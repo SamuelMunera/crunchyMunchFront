@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FB9CD6;
+    padding: 10px 20px;
+    overflow: visible;
+    position:relative;
+
+}
+
+
+
+.logo img {
+    position:absolute;
+    top: 20;
+    height: 300px;
+    z-index: 1000;
+    margin-top:-120px;
+    margin-left:-100px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    position: relative; /* Asegúrate de que el contenedor tenga una posición relativa */
+    margin-left: -20px; /* Ajusta este valor según sea necesario */
+    gap:50px;
+}
+
+.welcome {
+    font-weight: 100; 
+    font-family: 'superReduce', sans-serif;
+font-size: 20px;    
+}
+
+.icon {
+    height: 50px;
+    margin-left: 10px;
+}
+
+.cart {
+    position: relative;
+    height: 60px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: white;
+    color: black;
+    font-family: 'superReduce', sans-serif;
+    font-size: 19px; /* Aumenta el tamaño de la fuente */
+    border-radius: 50%;
+    padding: 6px 10px; /* Aumenta el padding para hacer el círculo más grande */
+}
+
+.nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    background-color: rgba(251, 156, 214, 0.6);
+    padding: 10px;
+    gap: 30%;
+}
+
+.nav-item {
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-family: 'brownBeige', sans-serif;
+    font-size: 18px;
+}
