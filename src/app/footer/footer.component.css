@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'brownBeige', sans-serif;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilos del footer */
+.footer {
+    background-color: #FB9CD6;
+    padding: 0;
+    margin-top: auto;
+    
+}
+h4{
+    font-weight: 120; 
+}
+
+.footer-content {
+    
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8rem;
+}
+
+/* Sección del logo */
+.footer-logo {
+    flex: 0 1 auto;
+    display: flex;
+     /* Logo a la izquierda */
+}
+
+.footer-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+/* Sección de pedidos */
+.footer-pedidos {
+    flex: 1 1 auto;
+   
+}
+
+.footer-pedidos h4 {
+    font-family: 'brownBeige', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #000;
+    text-transform: uppercase;
+    transition: color 0.3s; /* Animación añadida */
+}
+
+.footer-pedidos h4:hover {
+    color: #ffffff; /* Efecto hover */
+}
+
+
+.footer-quienSomos {
+    flex: 1 1 auto;
+   
+}
+
+.footer-quienSomos h4 {
+    font-family: 'brownBeige', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #000;
+    text-transform: uppercase;
+    transition: color 0.3s; /* Animación añadida */
+}
+
+.footer-quienSomos h4:hover {
+    color: #ffffff; /* Efecto hover */
+}
+
+
+
+
+
+/* Sección legal */
+.footer-legales {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-legales a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-legales a:hover {
+    color: #ffffff;
+}
+
+/* Sección redes sociales */
+.footer-redes {
+    flex: 1 1 auto;
+    
+    text-align: center;
+}
+
+.footer-redes h4 {
+    font-family: 'brownBeige', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #000;
+    text-transform: uppercase;
+
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.social-icon {
+    font-size: 24px;
+    color: #000;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px;
+        order: 1;
+    }
+
+    .footer-pedidos {
+        order: 2;
+        margin: 0 auto 20px;
+        text-align: center;
+    }
+
+    .footer-legales {
+        order: 3;
+        margin: 0 auto 20px;
+    }
+
+    .footer-redes {
+        order: 4;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
