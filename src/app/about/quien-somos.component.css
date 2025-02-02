@@ -1,0 +1,20 @@
+p{
+    font-family: "brownBeige", sans-serif;
+    color:white;
+    font-weight: 100;
+    font-size:40px;
+}
+h2{
+    font-family: "superReduce", sans-serif;
+    color:white;
+    font-weight: 50;
+    font-size:80px;
+    -webkit-text-stroke: 1.5px black; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 0px 0px 50px 0px;
+}
+div{
+display: flex;
+align-items: center;
+}
+

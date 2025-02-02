@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-quien-somos',
   standalone: true,
   imports: [RouterLinkWithHref],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  templateUrl: './quien-somos.component.html',
+  styleUrl: './quien-somos.component.css'
 })
-export class FooterComponent {
+export class QuienSomosComponent {
 
 }
