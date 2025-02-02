@@ -1,0 +1,47 @@
+.Card {
+    background-image: url("doodles.png");
+    height: 300px;
+    display: grid;
+    grid-template-rows:0;
+    grid-template-columns:1fr 1fr;
+    margin-top: 50px;
+    margin-left: 25px;
+    width: 60%;
+    border-radius: 30px;
+    padding: 20px;
+    opacity:80%;
+  }
+  
+  p{
+    font-family: "brownBeige", sans-serif;
+    color:black;
+    font-weight: 100;
+    font-size:25px;
+    opacity:100%;
+  }
+  h1{
+    font-family: "superReduce", sans-serif;
+    color:black;
+    font-weight: 50;
+    font-size:30px;
+    opacity:100%;
+  }
+  .container2{
+    display:grid;
+    grid-template-rows: 1fr 1fr  1fr 1fr;
+    
+  }
+  .number{
+    
+    margin-bottom: 15px;
+
+  }
+  .address{
+    margin-bottom: 15px;
+  }
+  .payment{
+    margin-bottom: 15px;
+  }
+  .status{
+margin-top:15px
+  }

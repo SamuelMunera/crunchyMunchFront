@@ -5,7 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { QuienSomosComponent } from './quien-somos/quien-somos.component';
 import { Router } from '@angular/router';
-
+import { NuestrosProductosComponent } from './nuestros-productos/nuestros-productos.component';
 @Component({
   selector: 'app-root',
   standalone: true,
