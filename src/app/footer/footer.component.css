@@ -74,7 +74,7 @@ h4 {
   color: #000;
   text-transform: uppercase;
   transition: color 0.3s; /* Animación añadida */
-  cursor: pointer;
+  
 }
 
 .footer-quienSomos h4:hover {
@@ -93,6 +93,7 @@ h4 {
   color: #000;
   text-decoration: none;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .footer-legales a:hover {

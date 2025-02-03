@@ -1,0 +1,124 @@
+section {
+background-color: #FB9CD6;
+height: 80%;
+margin-left: 10%;
+margin-top: 5%;
+margin-right: 10%;
+padding-left: 2%;
+border-radius: 20px;
+
+}
+
+h1{
+    padding-top: 2%;
+    font-family: 'superReduce', sans-serif;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-top: 5%;
+    -webkit-text-stroke: .5px black; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+     
+}
+input {
+    width: 200px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #ffe6f2; /* Un rosa claro */
+    color: #333;
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff66b2; /* Un rosa más fuerte */
+    background-color: #fff0f5;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+
+p{
+    font-family: 'brownBeige', sans-serif;
+    font-size: 20px;
+}
+.name{width: 300px;}
+.date{
+    width: 200px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #ffe6f2;
+    color: #333;
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    margin-left: 10%;
+    appearance: none; /* Oculta el estilo predeterminado en algunos navegadores */
+}
+.date:focus {
+    outline: none;
+    border-color: #ff66b2;
+    background-color: #fff0f5;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+    
+.mail{}
+.phone{margin-left: 10%;}
+.message{
+width: 90%; /* Mantiene el ancho ajustado */
+    
+    height: 120px; /* Ajusta la altura según necesidad */
+    padding: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    background-color: #ffe6f2;
+    font-family: 'Comic Sans MS',  sans-serif;
+    font-size: 14px;
+    resize: none; /* Evita que el usuario lo agrande */
+    box-sizing: border-box;
+    text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+    vertical-align: top; /* No funciona en textarea, lo corregimos abajo */
+    line-height: 1.5; /* Mejora la legibilidad */
+    overflow-y: auto; /* Muestra scroll si el contenido es grande */
+    display: block;
+    }
+
+article{
+    display:grid;
+ grid-template-columns: 1fr 1fr;
+    
+}
+button {
+    display: block;
+    width: 200px; /* Ajusta el ancho según necesites */
+    padding: 12px;
+    margin: 30px auto ; /* Centra el botón horizontalmente */
+    border: none;
+    background-color: #76B6F6; /* Color rosa pastel */
+    color: white;
+    font-size: 16px;
+    font-weight: 100;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'superReduce', sans-serif;
+}
+
+button:hover {
+    background-color: #6399ce; /* Un tono más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de agrandamiento */
+}
+
+button:active {
+    background-color: #4a7199;
+    transform: scale(0.95); /* Efecto al presionar */
+}

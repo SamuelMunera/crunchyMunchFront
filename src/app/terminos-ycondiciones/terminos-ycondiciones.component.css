@@ -1,0 +1,28 @@
+section {
+    background-color: #FB9CD6;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-right: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+    
+    border-radius: 20px;
+    
+    }
+    h1{
+        padding-top: 2%;
+        font-family: 'superReduce', sans-serif;
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        margin-top: 5%;
+        -webkit-text-stroke: .5px black; 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }    
+    p{
+        font-family: 'brownBeige', sans-serif;
+        font-size: 32px;
+        color:white;
+        margin-top:  16px;   
+    }
