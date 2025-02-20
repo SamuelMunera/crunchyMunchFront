@@ -16,14 +16,14 @@
     </div>
 
     <div>
-      @for (cookie of cookies(); track cookie._id) {
+      @for (crookie of crookies(); track crookie._id) {
           <card-product 
-            [id]="cookie._id"
-            [name]="cookie.name"
-            [photo]="cookie.photo"
-            [description]="cookie.description"
-            [recommendation]="cookie.recommendation"
-            [price]="cookie.price">
+            [id]="crookie._id"
+            [name]="crookie.name"
+            [photo]="crookie.photo"
+            [description]="crookie.description"
+            [recommendation]="crookie.recommendation"
+            [price]="crookie.price">
           </card-product> 
       }
       </div>
