@@ -1,0 +1,31 @@
+<div class ='container'>
+    <h1>cookies</h1>
+    
+    <h1>crookies</h1>
+   <div>
+    @for (cookie of cookies(); track cookie._id) {
+        <card-product 
+          [id]="cookie._id"
+          [name]="cookie.name"
+          [photo]="cookie.photo"
+          [description]="cookie.description"
+          [recommendation]="cookie.recommendation"
+          [price]="cookie.price">
+        </card-product> 
+    }
+    </div>
+
+    <div>
+      @for (cookie of cookies(); track cookie._id) {
+          <card-product 
+            [id]="cookie._id"
+            [name]="cookie.name"
+            [photo]="cookie.photo"
+            [description]="cookie.description"
+            [recommendation]="cookie.recommendation"
+            [price]="cookie.price">
+          </card-product> 
+      }
+      </div>
+    
+</div>

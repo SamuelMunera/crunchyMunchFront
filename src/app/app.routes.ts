@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 
 // componentes
-import { HomeComponent } from './home/home.component';
-import { QuienSomosComponent } from './quien-somos/quien-somos.component';
-import { NuestrosProductosComponent } from './nuestros-productos/nuestros-productos.component';
-import{ TusPedidosComponent } from './tus-pedidos/tus-pedidos.component';
-import { PqrsComponent } from './pqrs/pqrs.component';
-import { TerminosYCondicionesComponent } from './terminos-ycondiciones/terminos-ycondiciones.component';
+import { HomeComponent } from './pages/home/home.component';
+import { QuienSomosComponent } from './pages/quien-somos/quien-somos.component';
+import { NuestrosProductosComponent } from './pages/nuestros-productos/nuestros-productos.component';
+import{ TusPedidosComponent } from './components/tus-pedidos/tus-pedidos.component';
+import { PqrsComponent } from './pages/pqrs/pqrs.component';
+import { TerminosYCondicionesComponent } from './pages/terminos-ycondiciones/terminos-ycondiciones.component';
 
 
 export const routes: Routes = [

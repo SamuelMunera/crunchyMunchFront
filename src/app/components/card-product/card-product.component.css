@@ -1,0 +1,37 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.5%;
+  background-color: #fb9cd6;
+  width: 40rem ;
+  height: 10rem;
+  border-radius: 30px;
+  padding: 1%;
+}
+img {
+  padding: 5px;
+  height: 150px;
+  border-radius: 10px;
+  opacity: 100%;
+}
+.card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:active {
+  transform: scale(0.95);
+}
+p{
+    font-family: "brownBeige", sans-serif;
+    color:white;
+    font-weight: 50;
+    font-size:32px;
+    padding: 1px;
+    margin-top:20px;
+    opacity: 100%;
+}

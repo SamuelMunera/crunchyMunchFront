@@ -28,10 +28,8 @@ body{
     display: flex;
     flex-direction: column;
 }
-router-outlet + * {
-    width: 100%;
-}
+
 
 main{
-    height: 45.14rem;
+    min-height: 45.14rem;
 }
