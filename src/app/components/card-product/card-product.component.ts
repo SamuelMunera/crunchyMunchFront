@@ -4,7 +4,7 @@ import { RouterLinkWithHref } from '@angular/router';
 @Component({
   selector: 'card-product',
   standalone: true,
-  imports: [],
+  imports: [RouterLinkWithHref],
   templateUrl: './card-product.component.html',
   styleUrl: './card-product.component.css'
 })
@@ -15,5 +15,10 @@ export class CardProductComponent {
   @Input() description ='';
   @Input() recommendation = '';
   @Input() price ='';
-  
+
+  get photoUrl(): string {
+    return this.photo.startsWith('http') ? this.photo : `http://localhost:3000${this.photo}`;
+  }
+ 
+
  }
