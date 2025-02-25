@@ -1,8 +1,22 @@
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 id="product-title"></h2>
-        <p>¿Quieres agregar este producto a tu carrito?</p>
-        <button>Confirmar</button>
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<div class="modal-backdrop" *ngIf="product"></div>
+
+<div class="modal" *ngIf="product">
+  <button class="close-button" (click)="closeModal()">✖</button>
+  <h2>{{ product.name }}</h2>
+  <img *ngIf="photoUrl" [src]="photoUrl" alt="{{ product?.name }}" />
+  <p>{{ product.description }}</p>
+  <p>Recomendación: {{ product.recommendation }}</p>
+  <p>Precio: {{ product.price }}</p>
+
+  <div class="modal-footer">
+    <button class="add-to-cart"> AÑADIR AL CARRITO</button>
+    <div class="quantity-selector">
+      <button (click)="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
+      <span>{{ quantity }}</span>
+      <button (click)="increaseQuantity()"><i class="fa-solid fa-plus"></i></button>
     </div>
+  </div>
 </div>

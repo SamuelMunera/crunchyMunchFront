@@ -1,24 +1,162 @@
+/* MODAL: Tamaño optimizado y mejor alineación */
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Aprovechamos más el ancho */
+  max-width: 500px; /* Se permite más espacio */
+  background: #FB9CD6;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; /* Evita desbordamientos */
 }
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 50%;
+
+/* Fondo difuminado más pronunciado */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 999;
 }
-.close {
-    color: red;
-    font-size: 20px;
-    cursor: pointer;
+
+/* TÍTULO MEJOR CENTRADO Y CONTROLADO */
+.modal h2 {
+  font-weight: 50;
+  font-size: 32px; /* Ajustado para evitar desbordes */
+  color: white;
+  text-align: center;
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: "superReduce", sans-serif;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+/* IMAGEN MÁS GRANDE Y CENTRADA */
+.modal img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* TEXTOS CENTRADOS Y MÁS ESPACIADOS */
+.modal p {
+  font-weight: 50;
+  font-family: "brownBeige", sans-serif;
+  font-size: 16px; /* Ajustado para mayor legibilidad */
+  color: white;
+  margin: 12px 0;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+/* SECCIÓN DEL PIE DEL MODAL */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* BOTÓN DE AÑADIR AL CARRITO MEJORADO */
+.add-to-cart {
+  font-family: "superReduce", sans-serif;
+  font-weight: 50;
+  -webkit-text-stroke: .3px black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #73C2FB;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px 18px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  max-width: 90%;
+}
+
+.add-to-cart:hover {
+  background-color: #5aa0d9;
+}
+
+/* CONTROL DE CANTIDAD MÁS VISIBLE */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity-selector button {
+  background-color: white;
+  color: black;
+  font-size: 22px;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quantity-selector button:hover {
+  background-color: #e0e0e0;
+}
+
+.quantity-selector span {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+/* BOTÓN DE CIERRE MÁS ELEGANTE */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 26px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+  color: #ccc;
+}
+
+/* CONTROL DE TEXTOS QUE SE DESBORDAN */
+span {
+  font-family: "superReduce", sans-serif;
+  color: black;
+  font-weight: 100;
+  font-size: 18px; /* Se redujo un poco */
+  -webkit-text-stroke: 0.5px black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
