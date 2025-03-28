@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
-import { CookieService } from '../../services/cookie.service';
-import { CrookieService } from '../../services/crookie.service';
+
 
 @Component({
   selector: 'app-modal',
-  imports: [CommonModule],
+  imports: [CommonModule],  
   standalone: true,
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'

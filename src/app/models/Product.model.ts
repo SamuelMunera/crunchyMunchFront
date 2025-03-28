@@ -1,4 +1,4 @@
-export interface Crookie {
+export interface Products {
 
     _id: string;
     name: string;
@@ -6,6 +6,7 @@ export interface Crookie {
     description: string;
     recommendation: string;
     price: string;
+    category: string;
   
 
 }

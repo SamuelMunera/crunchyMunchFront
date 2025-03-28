@@ -1,0 +1,79 @@
+.cart-container {
+  width: 500px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute; /* O usa fixed si quieres que siempre esté visible */
+  top: 100px; /* Ajusta según la posición deseada */
+  right: 20px; /* Lo coloca en la esquina derecha */
+  background: #FB9CD6;
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 1000; /* Asegura que esté sobre otros elementos */
+  border: 2px solid black;
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 4px solid black;
+  padding-bottom: 10px;
+}
+
+.cart-items {
+  margin-top: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 3px solid black;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.checkout-btn {
+  background-color: #76B6F6;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: 'brownBeige', sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.checkout-btn:hover {
+  background-color: #4da6ff;
+}
+h1{
+  font-family: 'superReduce', sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+}
+h2{font-family: 'brownBeige', sans-serif;
+  font-weight: 100;
+  font-size: 20px;}
+
+  p {
+    font-family: 'brownBeige', sans-serif;
+  }

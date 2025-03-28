@@ -1,0 +1,25 @@
+
+    <aside *ngIf="cartService.cartVisibility()" class="cart-container">
+        <article class="cart-header">
+            <h1>3 ITEM EN EL CARRITO</h1>
+            <span class="close-btn">&times;</span>
+        </article>
+        <article class="cart-items">
+            <div class="cart-item">
+                <img src="" alt="Cookie Peannut Butter">
+                <p>COOKIE PEANUT BUTTER </p>
+            </div>
+            <div class="cart-item">
+                <img src="" alt="Cookie Triple Chocolate">
+                <p>CROOKIE TRIPLE CHOCOLATE </p>
+            </div>
+            <div class="cart-item">
+                <img src="" alt="Cookie Peannut Butter">
+                <p>COOKIE PEANUT BUTTER </p>
+            </div>
+        </article>
+        <div class="cart-total">
+            <h2>TOTAL: $50.000</h2>
+        </div>
+        <button class="checkout-btn">TERMINAR COMPRA</button>
+    </aside>

@@ -3,15 +3,16 @@
   flex-direction: row;
   margin-top: 1.5%;
   background-color: #fb9cd6;
-  width: 40rem ;
+  width: 45rem ;
   height: 10rem;
-  border-radius: 30px;
+  border-radius: 35px;
   padding: 1%;
 }
 img {
   padding: 5px;
+
   height: 150px;
-  border-radius: 10px;
+  border-radius: 25px;
   opacity: 100%;
 }
 .card {
@@ -34,4 +35,6 @@ p{
     padding: 1px;
     margin-top:20px;
     opacity: 100%;
+    margin-left:12px;
+  
 }

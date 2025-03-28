@@ -70,7 +70,7 @@ p{
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
 }
     
-.mail{}
+
 .phone{margin-left: 10%;}
 .message{
 width: 90%; /* Mantiene el ancho ajustado */
@@ -85,7 +85,7 @@ width: 90%; /* Mantiene el ancho ajustado */
     resize: none; /* Evita que el usuario lo agrande */
     box-sizing: border-box;
     text-align: left; /* Asegura que el texto esté alineado a la izquierda */
-    vertical-align: top; /* No funciona en textarea, lo corregimos abajo */
+   
     line-height: 1.5; /* Mejora la legibilidad */
     overflow-y: auto; /* Muestra scroll si el contenido es grande */
     display: block;

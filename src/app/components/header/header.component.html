@@ -1,19 +1,18 @@
+<header class="header">
+    <div class="logo">
+        <img src="assets/img/logo.png" alt="Crunchy Munch Logo">
+    </div>
+    <div class="user-info">
+        <span class="welcome">BIENVENIDO, Bernardo</span>
+        <img class="icon" src="assets/img/login.png" alt="Perfil">
+        <div class="cart" >
+            <img class="cart" (click)="handleCartClick()" src="assets/img/cart.png" alt="Carrito">
+            <button (click)="handleCartClick()" class="cart-badge">0</button>
+        </div>
+    </div>
+</header>
 
-   
-    <header class="header">
-        <div class="logo">
-            <img src="assets/img/logo.png" alt="Crunchy Munch Logo">
-        </div>
-        <div class="user-info">
-            <span class="welcome">BIENVENIDO, bernardo </span>
-            <img class="icon" src="assets/img/login.png" alt="Perfil">
-            <div class="cart">
-                <img class="cart" src="assets/img/cart.png" alt="Carrito">
-                <span class="cart-badge">0</span>
-            </div>
-        </div>
-    </header>
-    <nav class="nav">
-        <a routerLink="/nuestrosProductos" class="nav-item"><p>NUESTROS PRODUCTOS</p></a>
-        <a routerLink="/tusPedidos" class="nav-item"><p>TUS PEDIDOS</p></a>
-    </nav>
+<nav class="nav">
+    <a routerLink="/nuestrosProductos" class="nav-item"><p>NUESTROS PRODUCTOS</p></a>
+    <a routerLink="/tusPedidos" class="nav-item"><p>TUS PEDIDOS</p></a>
+</nav>

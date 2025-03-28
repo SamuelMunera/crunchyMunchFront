@@ -1,31 +1,18 @@
 <div class ='container'>
     <h1>cookies</h1>
-    
-    <h1>crookies</h1>
+  
    <div>
-    @for (cookie of cookies(); track cookie._id) {
+    @for (product of getProductsByCategory('67e4db72764d8725aa8bceab'); track product._id) {
         <card-product 
-          [id]="cookie._id"
-          [name]="cookie.name"
-          [photo]="cookie.photo"
-          [description]="cookie.description"
-          [recommendation]="cookie.recommendation"
-          [price]="cookie.price">
+          [id]="product._id"
+          [name]="product.name"
+          [photo]="product.photo"
+          [description]="product.description"
+          [recommendation]="product.recommendation"
+          [price]="product.price">
         </card-product> 
     }
     </div>
 
-    <div>
-      @for (crookie of crookies(); track crookie._id) {
-          <card-product 
-            [id]="crookie._id"
-            [name]="crookie.name"
-            [photo]="crookie.photo"
-            [description]="crookie.description"
-            [recommendation]="crookie.recommendation"
-            [price]="crookie.price">
-          </card-product> 
-      }
-      </div>
     
 </div>

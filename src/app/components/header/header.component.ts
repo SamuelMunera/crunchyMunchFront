@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -9,5 +9,11 @@ import { RouterLinkWithHref } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+private cartService= inject(CartService);
+
+handleCartClick(){
+  this.cartService.toggleCartVisibility();
+  
+}
 
 }
