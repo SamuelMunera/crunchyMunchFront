@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { inject } from '@angular/core';
 
 
 @Component({
@@ -12,8 +14,11 @@ import { Input } from '@angular/core';
 })
 export class ModalComponent {
 
-  @Input() product: any | null = null; //  Asegura que product puede ser null
+  quantity: number = 0;
+private cartService = inject (CartService); 
 
+  @Input() product: any | null = null; //  Asegura que product puede ser null
+  @Input() _id: string = '';
   @Input() name: string = '';
   @Input() photo = '';
   @Input() description = '';
@@ -35,14 +40,21 @@ export class ModalComponent {
 
 
   //funcion para que mueva la cantidad de productos
-  quantity: number = 0;
-  increaseQuantity() {
-    this.quantity++;
-  }
+  
+ 
+handleAddToCart(product:any, quantity: number) {
+  this.cartService.addToCart(product, quantity);
 
-  decreaseQuantity() {
-    if (this.quantity > 0) {
-      this.quantity--;
-    }
+
+}
+
+increaseQuantity() {
+  this.quantity++;
+}
+
+decreaseQuantity() {
+  if (this.quantity > 0) {
+    this.quantity--;
   }
+}
 }

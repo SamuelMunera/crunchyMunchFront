@@ -1,18 +1,16 @@
-<div class ='container'>
-    <h1>cookies</h1>
-  
-   <div>
-    @for (product of getProductsByCategory('67e4db72764d8725aa8bceab'); track product._id) {
-        <card-product 
-          [id]="product._id"
-          [name]="product.name"
-          [photo]="product.photo"
-          [description]="product.description"
-          [recommendation]="product.recommendation"
-          [price]="product.price">
-        </card-product> 
-    }
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="../../../assets/img/tripleChocolateCrookie.png" alt="Imagen 1">
+        <img src="../../../assets/img/peanutButterCookie.png" alt="Imagen 2">
+        <img src="../../../assets/img/roll-safe-meme-2345295.webp" alt="Imagen 3">
+        <img src="../../../assets/img/meme-1.webp" alt="Imagen 4">
+        <img src="../../../assets/img/450_1000.jpeg" alt="Imagen 5">
     </div>
+</div>
 
-    
+<div class="button-container">
+    <button routerLink="/Cookie">cookies</button>
+    <button routerLink="/Crookie">crookies</button>
+    <button>milshakes</button>
+    <button routerLink="/Bebidas">bebidas</button>
 </div>

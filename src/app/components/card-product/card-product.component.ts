@@ -1,16 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input, inject } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'card-product',
   standalone: true,
   imports: [RouterLinkWithHref, ModalComponent, CommonModule],
   templateUrl: './card-product.component.html',
-  styleUrl: './card-product.component.css'
+  styleUrl: './card-product.component.css',
 })
 export class CardProductComponent {
+  private cartService = inject(CartService);
+
+  @Input() _id: string = '';
   @Input() name: string = '';
   @Input() photo = '';
   @Input() description = '';
@@ -18,19 +22,22 @@ export class CardProductComponent {
   @Input() price = '';
 
   get photoUrl(): string {
-    return this.photo.startsWith('http') ? this.photo : `http://localhost:3000${this.photo}`;
+    return this.photo.startsWith('http')
+      ? this.photo
+      : `http://localhost:3000${this.photo}`;
   }
 
   isModalOpen = false;
   selectedProduct: any = null;
-  
+
   openModal() {
     this.selectedProduct = {
+      _id: this._id, // Assuming you want to use name as the ID, change if needed
       name: this.name,
       photo: this.photo,
       description: this.description,
       recommendation: this.recommendation,
-      price: this.price
+      price: this.price,
     };
     this.isModalOpen = true;
   }
@@ -39,5 +46,3 @@ export class CardProductComponent {
     this.isModalOpen = false;
   }
 }
-
- 

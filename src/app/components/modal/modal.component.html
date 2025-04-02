@@ -12,7 +12,7 @@
   <p>Precio: {{ product.price }}</p>
 
   <div class="modal-footer">
-    <button class="add-to-cart"> AÑADIR AL CARRITO</button>
+    <button class="add-to-cart" (click)="handleAddToCart(product,quantity)"> AÑADIR AL CARRITO</button>
     <div class="quantity-selector">
       <button (click)="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
       <span>{{ quantity }}</span>

@@ -1,6 +1,6 @@
 .card {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
   margin-top: 1.5%;
   background-color: #fb9cd6;
   width: 45rem ;

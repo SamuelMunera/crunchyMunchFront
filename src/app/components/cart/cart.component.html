@@ -1,25 +1,18 @@
-
-    <aside *ngIf="cartService.cartVisibility()" class="cart-container">
-        <article class="cart-header">
-            <h1>3 ITEM EN EL CARRITO</h1>
-            <span class="close-btn">&times;</span>
-        </article>
-        <article class="cart-items">
-            <div class="cart-item">
-                <img src="" alt="Cookie Peannut Butter">
-                <p>COOKIE PEANUT BUTTER </p>
-            </div>
-            <div class="cart-item">
-                <img src="" alt="Cookie Triple Chocolate">
-                <p>CROOKIE TRIPLE CHOCOLATE </p>
-            </div>
-            <div class="cart-item">
-                <img src="" alt="Cookie Peannut Butter">
-                <p>COOKIE PEANUT BUTTER </p>
-            </div>
-        </article>
-        <div class="cart-total">
-            <h2>TOTAL: $50.000</h2>
+<aside *ngIf="cartService.cartVisibility()" class="cart-container">
+    <article class="cart-header">
+        <h1>{{ getCartItemCount() }} ITEM EN EL CARRITO</h1>
+        <span class="close-btn" (click)="handleCartClick()">&times;</span>
+    </article>
+    <article class="cart-items">
+        <div class="cart-item" *ngFor="let item of getCartItems()">
+            <!-- Corregido: usar [src] correctamente con item.product.photo -->
+            <img [src]="item.product.photo" alt="{{ item.product.name }}">
+            <p>{{ item.product.name }}</p>
+            <p>Cantidad: {{ item.quantity }}</p>
         </div>
-        <button class="checkout-btn">TERMINAR COMPRA</button>
-    </aside>
+    </article>
+    <div class="cart-total">
+        <h2>TOTAL: ${{ calculateTotal() }}</h2>
+    </div>
+    <button class="checkout-btn">TERMINAR COMPRA</button>
+</aside>
