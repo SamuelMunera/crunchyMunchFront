@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.container {
+    background-color: #ff9ad1;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 600px;
+}
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+label {
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-family: "superReduce", sans-serif;
+    color:black;
+    font-weight: 50;
+    font-size: 25px;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+.button {
+    background-color: #6ec5ff;
+    
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 50%;
+    height:70px;
+    margin-top: 20px;
+    font-family: "superReduce", sans-serif;
+    color:black;
+    font-weight: 50;
+    font-size: 25px;
+}

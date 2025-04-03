@@ -10,6 +10,8 @@ import { TerminosYCondicionesComponent } from './pages/terminos-ycondiciones/ter
 import { NuestrosProductosComponent } from './pages/nuestros-productos/nuestros-productos.component';
 import { CrookieProductoComponent } from './pages/crookie-producto/crookie-producto.component';
 import { BebidasProductoComponent } from './pages/bebidas-producto/bebidas-producto.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent},
@@ -21,5 +23,6 @@ export const routes: Routes = [
     {path: 'Pqrs', component: PqrsComponent},
     {path:'TyC', component: TerminosYCondicionesComponent},
     {path:'Nuestros Productos', component: NuestrosProductosComponent},
-    
+    {path:'Login', component: LoginComponent},
+    {path:'Registro', component: RegisterComponent},
 ];

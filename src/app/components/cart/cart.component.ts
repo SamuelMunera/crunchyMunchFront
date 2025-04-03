@@ -1,49 +1,93 @@
-import { Component, inject, signal, Input } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
+
+// Definir interfaces para tipar correctamente los datos
+interface Product {
+  name: string;
+  photo: string;
+  price: number;
+  // Añade otras propiedades que tenga tu producto
+}
+
+interface CartItem {
+  product: Product;
+  quantity: number;
+}
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  styleUrl: './cart.component.css'
 })
-export class CartComponent {
-  @Input() product: any;
-  @Input() quantity: number = 1;
-  @Input() photo: string = '';
-  
-  // Cambia a público para que sea accesible desde la plantilla
-  public cartService = inject(CartService);
-  cartVisibility = this.cartService.cartVisibility;
-  
-  constructor() {}
-  
-  handleCartClick() {
+export class CartComponent implements OnInit, OnDestroy {
+  public cartItems: CartItem[] = [];
+  private cartSubscription?: Subscription;
+  private apiUrl: string = 'http://localhost:3000'; // Ajústalo a la URL de tu backend
+
+  constructor(public cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartSubscription = this.cartService.getCartItems().subscribe(cartMap => {
+      this.cartItems = Array.from(cartMap.values()) as CartItem[];
+      
+      // Depuración: ver qué datos están llegando
+      console.log('Items en el carrito:', this.cartItems);
+      if (this.cartItems.length > 0) {
+        console.log('Primera foto URL:', this.cartItems[0].product.photo);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
+
+  toggleCartVisibility(): void {
     this.cartService.toggleCartVisibility();
   }
-  
-  handleProduct(product: any, quantity: number) {
-    this.cartService.addToCart(product, quantity);
-    
-  }
-  
-  getCartItems() {
-    
-    return Array.from(this.cartService.productsInCart().values());
-   
-  }
-  
-  getCartItemCount() {
-    return this.getCartItems().length;
-  }
-  
-  calculateTotal() {
+
+  calculateTotal(): number {
     let total = 0;
-    this.getCartItems().forEach(item => {
+    for (const item of this.cartItems) {
       total += item.product.price * item.quantity;
-    });
-    return total.toFixed(0);
+    }
+    return total;
+  }
+
+  removeFromCart(productName: string): void {
+    this.cartService.removeFromCart(productName);
+  }
+
+  // Método para manejar errores de carga de imágenes
+  handleImageError(event: any): void {
+    console.log('Error cargando imagen, usando imagen de reemplazo');
+    event.target.src = 'assets/img/placeholder.png'; // Imagen de reemplazo
+  }
+
+  // Método para generar la URL correcta de la imagen
+  getImageUrl(product: Product): string {
+    if (!product || !product.photo) {
+      console.log('Producto o foto no disponible');
+      return 'assets/img/placeholder.png';
+    }
+
+    // Si la URL ya incluye http:// o https://, devolverla tal cual
+    if (product.photo.startsWith('http://') || product.photo.startsWith('https://')) {
+      return product.photo;
+    }
+
+    // Si la URL comienza con /, no agregar otro /
+    if (product.photo.startsWith('/')) {
+      return `${this.apiUrl}${product.photo}`;
+    }
+
+    // De lo contrario, asegurarse de que haya un / entre apiUrl y photo
+    return `${this.apiUrl}/${product.photo}`;
   }
 }

@@ -1,13 +1,14 @@
 <header class="header">
     <div routerLink="/" class="logo">
-        <img  src="assets/img/logo.png" alt="Crunchy Munch Logo">
+        <img src="assets/img/logo.png" alt="Crunchy Munch Logo">
     </div>
     <div class="user-info">
-        <span class="welcome">BIENVENIDO, Bernardo</span>
-        <img class="icon" src="assets/img/login.png" alt="Perfil">
-        <div class="cart" >
+        <!-- Mostrar mensaje de bienvenida solo si el usuario está logueado -->
+        <span class="welcome" *ngIf="user">BIENVENIDO, {{user.name}}</span>
+        <img routerLink="/Login" class="icon" src="assets/img/login.png" alt="Perfil">
+        <div class="cart">
             <img class="cart" (click)="handleCartClick()" src="assets/img/cart.png" alt="Carrito">
-            <button (click)="handleCartClick()" class="cart-badge">0</button>
+            <button (click)="handleCartClick()" class="cart-badge">{{cartItemCount}}</button>
         </div>
     </div>
 </header>

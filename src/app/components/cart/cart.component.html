@@ -1,18 +1,30 @@
-<aside *ngIf="cartService.cartVisibility()" class="cart-container">
-    <article class="cart-header">
-        <h1>{{ getCartItemCount() }} ITEM EN EL CARRITO</h1>
-        <span class="close-btn" (click)="handleCartClick()">&times;</span>
-    </article>
-    <article class="cart-items">
-        <div class="cart-item" *ngFor="let item of getCartItems()">
-            <!-- Corregido: usar [src] correctamente con item.product.photo -->
-            <img [src]="item.product.photo" alt="{{ item.product.name }}">
+
+<div class="cart-container" *ngIf="cartService.cartVisibility()">
+    <div class="cart-header">
+        <h2>Tu Carrito</h2>
+        <button (click)="toggleCartVisibility()" class="close-btn">X</button>
+    </div>
+    
+    <div class="cart-items">
+        <div *ngIf="cartItems.length === 0" class="empty-cart">
+            Tu carrito está vacío
+        </div>
+        
+        <div *ngFor="let item of cartItems" class="cart-item">
+            <!-- Añadimos logging y manejo de errores -->
+            <img [src]="getImageUrl(item.product)" 
+                 alt="{{ item.product.name }}" 
+                 (error)="handleImageError($event)">
             <p>{{ item.product.name }}</p>
             <p>Cantidad: {{ item.quantity }}</p>
+            <p>Precio: {{ item.product.price * item.quantity | currency }}</p>
         </div>
-    </article>
-    <div class="cart-total">
-        <h2>TOTAL: ${{ calculateTotal() }}</h2>
     </div>
-    <button class="checkout-btn">TERMINAR COMPRA</button>
-</aside>
+    
+    <div class="cart-footer">
+        <div class="total">
+            <p>Total: {{ calculateTotal() | currency }}</p>
+        </div>
+        <button class="checkout-btn">Finalizar Compra</button>
+    </div>
+</div>

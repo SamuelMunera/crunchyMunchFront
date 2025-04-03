@@ -1,0 +1,36 @@
+<div class="container">
+    <img src="../../../assets/img/logo - copia.png" alt="Crunchy Munch" class="logo">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="email">CORREO</label>
+        <input type="email" placeholder="Ingresa tu correo" formControlName="email" id="email" name="email" required>
+        @if(email.invalid && (email.dirty || email.touched)){
+            @if(email.errors?.['required']){
+                <small>Correo requerido</small>}
+            @if(email.errors?.['email']){
+                <small>Correo inválido</small>}
+        }
+        
+        <label for="password">CONTRASEÑA</label>
+        <input type="password" placeholder="Ingresa tu contraseña" formControlName="password" id="password" name="password" required>
+        @if(password.invalid && (password.dirty || password.touched)){
+            @if(password.errors?.['required']){
+                <small>Contraseña requerida</small>}
+        }
+        
+        @if(errorMessage){
+            <div class="error-message">
+                {{ errorMessage }}
+            </div>
+        }
+        
+        <p routerLink="/Registro" class="register-text">¿Aún no te has registrado?</p>
+        
+        <button type="submit" class="button" [disabled]="loginForm.invalid || isLoading">
+            @if(isLoading){
+                CARGANDO...
+            } @else {
+                INICIAR SESIÓN
+            }
+        </button>
+    </form>
+</div>
