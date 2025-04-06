@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 import { RouterLinkWithHref, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, FormsModule, Validators, FormGroup } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { AuthServices } from '../../services/auth-admin.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-admin-login',
   standalone: true,
   imports: [RouterLinkWithHref, ReactiveFormsModule, FormsModule, HttpClientModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './admin-login.component.html',
+  styleUrl: './admin-login.component.css'
 })
-export class LoginComponent {
+export class AdminLoginComponent {
   loginForm = new FormGroup({
-    email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+    userName: new FormControl('', {validators: [Validators.required]}),
     password: new FormControl('', {validators: [Validators.required]})
   });
 
@@ -21,11 +21,11 @@ export class LoginComponent {
   isLoading: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    private authService: AuthServices,
     private router: Router
   ) {}
 
-  get email() { return this.loginForm.get('email') as FormControl; }
+  get userName() { return this.loginForm.get('userName') as FormControl; }
   get password() { return this.loginForm.get('password') as FormControl; }
 
   onSubmit() {
@@ -36,15 +36,16 @@ export class LoginComponent {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const email = this.email.value;
+    const userName = this.userName.value;
     const password = this.password.value;
 
-    this.authService.login(email, password).subscribe({
+    // Usar adminLogin en lugar de login
+    this.authService.adminLogin(userName, password).subscribe({
       next: (response) => {
         console.log('Login exitoso', response);
         this.isLoading = false;
-        // Redirigir al usuario a la página principal o dashboard
-        this.router.navigate(['/Home']);
+        // Redirigir al usuario a la página principal o dashboard de admin
+        this.router.navigate(['/admin/dashboard']);
       },
       error: (error) => {
         console.error('Error en el login', error);

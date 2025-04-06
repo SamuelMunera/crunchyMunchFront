@@ -12,6 +12,9 @@ import { CrookieProductoComponent } from './pages/crookie-producto/crookie-produ
 import { BebidasProductoComponent } from './pages/bebidas-producto/bebidas-producto.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminAuthGuard } from './guards/auth-guard.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent},
@@ -25,4 +28,16 @@ export const routes: Routes = [
     {path:'Nuestros Productos', component: NuestrosProductosComponent},
     {path:'Login', component: LoginComponent},
     {path:'Registro', component: RegisterComponent},
+    
+    {path:'dadada', component: AdminComponent},
+    { path: 'admin-login', component: AdminLoginComponent },
+    { 
+      path: 'admin/dashboard', 
+      component: AdminComponent, 
+      canActivate: [AdminAuthGuard] // Protege esta ruta con el guard
+    },
+    // Otras rutas de la aplicación
+    { path: '', redirectTo: '/admin-login', pathMatch: 'full' },
+    { path: '**', redirectTo: '/admin-login' }
+
 ];
