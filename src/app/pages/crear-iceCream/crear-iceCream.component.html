@@ -1,0 +1,13 @@
+<div class="form-container">
+  <h1 class="form-title">CREAR</h1>
+  <form [formGroup]="iceCreamForm" (ngSubmit)="enviarFormulario()">
+    <label for="name" class="form-label"><strong>NOMBRE:</strong></label>
+    <input type="text" id="name" class="form-input" formControlName="name" placeholder=" ">
+    <button class="form-button">CREAR</button>
+  </form>
+  
+  <!-- Elemento de notificación con clase específica para personalizar -->
+  <div *ngIf="mostrarMensaje" class="mensaje-notificacion">
+    {{ mensajeExito }}
+  </div>
+</div>

@@ -1,14 +1,22 @@
-.panel {
-  /* celeste */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 40px;
-    font-family: 'brownBeige', sans-serif;
+h2 {
+    font-family: 'superReduce', sans-serif;
+    font-size: 45px;
+    color: white; /* rosado */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    -webkit-text-stroke: .5px black;
+    margin-top: 20px;
   }
-  
-  .column {
+article {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+   /* Full height */
+    
+  }
+
+  .panel-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -26,9 +34,29 @@
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     transition: background-color 0.3s ease;
+    width:400px; 
+    height:120px;
+    margin-left:18%;
+    margin-bottom: 20px;
   }
   
   .panel-button:hover {
     background-color: #f292c0;
   }
-  
+  .logout-button{
+    
+    background-color: rgb(63, 63, 63);
+    font-family: 'brownBeige', sans-serif;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    
+    height:60px;
+   margin-left: 40%;
+  }
