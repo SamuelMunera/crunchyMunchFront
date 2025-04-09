@@ -159,4 +159,68 @@ span {
   overflow-wrap: break-word;
   white-space: normal;
   max-width: 100%;
+} 
+/* Estilos para los menús desplegables */
+.options-container {
+  width: 100%;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.options-container label {
+  display: block;
+  font-family: "brownBeige", sans-serif;
+  color: white;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+  background-color: white;
+  font-family: "brownBeige", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dropdown-select:hover, .dropdown-select:focus {
+  border-color: #73C2FB;
+  outline: none;
+}
+/* Estilos para indicador de carga */
+.loading-indicator {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.loading-indicator p {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+  background-color: rgba(255, 99, 71, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.error-message p {
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilo para botón deshabilitado */
+.add-to-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

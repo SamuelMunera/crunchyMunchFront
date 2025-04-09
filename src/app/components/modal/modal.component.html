@@ -1,18 +1,53 @@
-
-  
+<!-- modal.component.html -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <div class="modal-backdrop" *ngIf="product"></div>
 
 <div class="modal" *ngIf="product">
   <button class="close-button" (click)="closeModal()">✖</button>
   <h2>{{ product.name }}</h2>
+  
+  <!-- Imagen del producto -->
   <img *ngIf="photoUrl" [src]="photoUrl" alt="{{ product?.name }}" />
+  
+  <!-- Información del producto -->
   <p>{{ product.description }}</p>
   <p>Recomendación: {{ product.recommendation }}</p>
-  <p>Precio: {{ product.price }}</p>
+  <p>Precio: {{ product.price | currency:'COP':'symbol':'1.0-0' }}</p>
 
+  <!-- Mensaje de carga -->
+  <div *ngIf="isLoading" class="loading-indicator">
+    <p>Cargando opciones...</p>
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Menú desplegable para Toppings -->
+  <div class="options-container" *ngIf="hasToppings()">
+    <label for="toppingSelect">Selecciona un topping:</label>
+    <select id="toppingSelect" [(ngModel)]="selectedTopping" class="dropdown-select">
+      <option value="">Sin topping</option>
+      <option *ngFor="let topping of availableToppings" [value]="topping._id">{{ topping.name }}</option>
+    </select>
+  </div>
+
+  <!-- Menú desplegable para Ice Creams -->
+  <div class="options-container" *ngIf="hasIceCreams()">
+    <label for="iceCreamSelect">Selecciona un helado:</label>
+    <select id="iceCreamSelect" [(ngModel)]="selectedIceCream" class="dropdown-select">
+      <option value="">Sin helado</option>
+      <option *ngFor="let iceCream of availableIceCreams" [value]="iceCream._id">{{ iceCream.name }}</option>
+    </select>
+  </div>
+
+  <!-- Botones de acción -->
   <div class="modal-footer">
-    <button class="add-to-cart" (click)="handleAddToCart(product,quantity)"> AÑADIR AL CARRITO</button>
+    <button class="add-to-cart" [disabled]="quantity === 0 || isLoading" (click)="handleAddToCart(product, quantity)">
+      {{ isLoading ? 'CARGANDO...' : 'AÑADIR AL CARRITO' }}
+    </button>
     <div class="quantity-selector">
       <button (click)="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
       <span>{{ quantity }}</span>
