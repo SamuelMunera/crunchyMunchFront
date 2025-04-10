@@ -1,0 +1,83 @@
+<!-- crear-productos.component.html -->
+<div class="form-container">
+    <h1 class="form-title">CREAR</h1>
+    
+    <form [formGroup]="productoForm" (ngSubmit)="crearProducto()">
+      <label for="nombre" class="form-label">NOMBRE:</label>
+      <input type="text" id="nombre" class="form-input" formControlName="nombre" />
+      <div *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched" class="error-message">
+        El nombre es requerido
+      </div>
+      
+      <label for="informacion" class="form-label">INFORMACIÓN:</label>
+      <textarea id="informacion" class="form-input" formControlName="informacion" rows="3"></textarea>
+      <div *ngIf="productoForm.get('informacion')?.invalid && productoForm.get('informacion')?.touched" class="error-message">
+        La información es requerida
+      </div>
+      
+      <label for="categoria" class="form-label">CATEGORÍA:</label>
+      <select id="categoria" class="form-input form-select" formControlName="categoria">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+      </select>
+      <div *ngIf="productoForm.get('categoria')?.invalid && productoForm.get('categoria')?.touched" class="error-message">
+        La categoría es requerida
+      </div>
+      
+      <div class="multi-select-container">
+        <label class="form-label">TOPPINGS:</label>
+        <div class="custom-multi-select">
+          <div 
+            *ngFor="let topping of toppings" 
+            class="option-item" 
+            [ngClass]="{'selected': isToppingSelected(topping._id)}"
+            (click)="toggleToppingSelection(topping._id)">
+            {{ topping.name }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="multi-select-container">
+        <label class="form-label">HELADOS:</label>
+        <div class="custom-multi-select">
+          <div 
+            *ngFor="let iceCream of iceCreams" 
+            class="option-item" 
+            [ngClass]="{'selected': isIceCreamSelected(iceCream._id)}"
+            (click)="toggleIceCreamSelection(iceCream._id)">
+            {{ iceCream.name }}
+          </div>
+        </div>
+      </div>
+      
+      <label for="recomendaciones" class="form-label">RECOMENDACIONES:</label>
+      <textarea id="recomendaciones" class="form-input" formControlName="recomendaciones" rows="3"></textarea>
+      <div *ngIf="productoForm.get('recomendaciones')?.invalid && productoForm.get('recomendaciones')?.touched" class="error-message">
+        Las recomendaciones son requeridas
+      </div>
+      
+      <label for="precio" class="form-label">PRECIO:</label>
+      <input type="number" id="precio" class="form-input" formControlName="precio" min="0" step="0.01" />
+      <div *ngIf="productoForm.get('precio')?.invalid && productoForm.get('precio')?.touched" class="error-message">
+        El precio es requerido y debe ser mayor a 0
+      </div>
+      
+      <label class="form-label">IMÁGENES:</label>
+      <div class="image-upload">
+        <label for="imagen" class="image-placeholder">
+          <span>+</span>
+          <span *ngIf="selectedFile" class="file-name">{{ selectedFile.name }}</span>
+        </label>
+        <input type="file" id="imagen" (change)="onFileSelected($event)" accept="image/*" hidden />
+      </div>
+      <div *ngIf="!selectedFile && productoForm.touched" class="error-message">
+        La imagen es requerida
+      </div>
+      
+      <button type="submit" class="form-button">CREAR</button>
+    </form>
+    
+    <div *ngIf="mostrarMensaje" class="mensaje-notificacion" [ngClass]="{'error': mensajeExito.includes('Error')}">
+      {{ mensajeExito }}
+    </div>
+  </div>

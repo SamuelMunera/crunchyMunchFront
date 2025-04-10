@@ -6,9 +6,11 @@
 /* Estilos del footer */
 .footer {
   background-color: #fb9cd6;
-  padding: 0;
+  padding: 20px 0; /* Añado padding vertical para mejor aspecto */
   margin-top: 5px;
+  width: 100%;
 }
+
 h4 {
   font-weight: 120;
 }
@@ -21,6 +23,7 @@ h4 {
   align-items: center;
   flex-wrap: wrap;
   gap: 8rem;
+  padding: 0 20px; /* Añadido padding horizontal */
 }
 
 /* Sección del logo */
@@ -63,7 +66,6 @@ h4 {
   color: #000;
   text-transform: uppercase;
   transition: color 0.3s; /* Animación añadida */
-  
 }
 
 .footer-quienSomos h4:hover {
@@ -93,7 +95,6 @@ h4 {
 /* Sección redes sociales */
 .footer-redes {
   flex: 1 1 auto;
-
   text-align: center;
 }
 
@@ -122,37 +123,109 @@ h4 {
   color: #ffffff;
 }
 
-/* Responsive */
+/* RESPONSIVE MEJORADO */
+/* Tablets y móviles grandes */
+@media (max-width: 992px) {
+  .footer-content {
+    gap: 4rem; /* Reducir el espacio entre elementos */
+    padding: 0 15px;
+  }
+  
+  .footer-logo img {
+    height: 80px; /* Reducir un poco el logo */
+  }
+}
+
+/* Tablets pequeñas */
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
     text-align: center;
-    gap: 40px;
+    gap: 30px;
+    padding: 20px;
   }
-
+  
   .footer-logo {
     margin: 0 auto 20px;
     order: 1;
   }
-
+  
   .footer-pedidos {
     order: 2;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     text-align: center;
   }
-
-  .footer-legales {
+  
+  .footer-quienSomos {
     order: 3;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
+    text-align: center;
   }
-
-  .footer-redes {
+  
+  .footer-legales {
     order: 4;
+    margin: 0 auto 20px;
+    align-items: center; /* Centrar los enlaces */
+  }
+  
+  .footer-redes {
+    order: 5;
     margin: 0 auto;
     text-align: center;
   }
-
+  
   .social-icons {
     justify-content: center;
+  }
+}
+
+/* Móviles */
+@media (max-width: 576px) {
+  .footer {
+    padding: 15px 0;
+  }
+  
+  .footer-content {
+    gap: 20px;
+  }
+  
+  .footer-logo img {
+    height: 70px; /* Reducir más el logo */
+  }
+  
+  h4 {
+    font-size: 1.1em; /* Reducir tamaño de texto */
+    margin-bottom: 10px;
+  }
+  
+  .footer-legales {
+    gap: 10px;
+  }
+  
+  .social-icons {
+    gap: 12px;
+  }
+  
+  .social-icon {
+    font-size: 22px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 375px) {
+  .footer-logo img {
+    height: 60px;
+  }
+  
+  .footer-content {
+    gap: 15px;
+  }
+  
+  h4 {
+    font-size: 1em;
+  }
+  
+  .social-icon {
+    font-size: 20px;
   }
 }

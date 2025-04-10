@@ -5,41 +5,144 @@
   align-items: center;
   grid-template-columns: 1fr 1fr;
   margin: 0;
-  height: 100%;
-  height: 45.14rem;
+  height: 100vh; /* Mejor uso de viewport height */
+  max-width: 1400px; /* Limitar ancho máximo */
+  margin: 0 auto; /* Centrar en pantallas grandes */
+  padding: 0 20px; /* Padding horizontal para evitar que el contenido toque los bordes */
 }
 
 .slogan {
   font-size: 7rem;
   font-family: "superReduce", sans-serif;
-  font-weight: bold;
   color: #fff;
   padding: 10px;
   padding-top: 10%;
-  font-weight: 100;
+  font-weight: 300; /* Un poco más de peso que 100 para mejor legibilidad */
+  line-height: 1.2; /* Mejorar espaciado entre líneas */
+  margin-bottom: 2rem; /* Espacio consistente abajo */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sutil sombra para mejorar legibilidad */
 }
 
 .pedido-btn {
-  background-color: #ff88c2; 
+  background-color: #ff88c2;  
   color: #000;
   font-size: 2.5rem;
   font-family: "brownBeige", sans-serif;
-  padding: 10px 20px;
+  padding: 15px 25px; /* Más padding para mejor clickabilidad */
   border: none;
-  border-radius: 20px;
+  border-radius: 25px; /* Ligeramente más redondeado */
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Añadido transición de color */
   width: 60%;
-  height: 10%;
-  margin-left: 25%;
+  margin: 0 auto; /* Centrar mejor el botón */
   margin-top: 20%;
+  display: block; /* Mejor para centrado */
+  font-weight: 600; /* Un poco más de negrita para el botón */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil por defecto */
 }
 
 .pedido-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Escala un poco menos agresiva */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  background-color: #ff9ed0; /* Ligero cambio de color al hover */
 }
 
 .pedido-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.98);
+  background-color: #ff77b8; /* Color más oscuro al hacer clic */
+}
+
+/* Responsive para tablets grandes */
+@media (max-width: 1200px) {
+  .slogan {
+    font-size: 5.5rem;
+    padding-top: 8%;
+  }
+  
+  .pedido-btn {
+    font-size: 2.2rem;
+    width: 70%;
+  }
+}
+
+/* Responsive para tablets */
+@media (max-width: 992px) {
+  .container {
+    height: auto;
+    min-height: 40rem;
+    padding: 40px 30px;
+  }
+  
+  .slogan {
+    font-size: 4.5rem;
+    padding-top: 6%;
+  }
+  
+  .pedido-btn {
+    font-size: 2rem;
+    width: 75%;
+    margin-top: 15%;
+  }
+}
+
+/* Responsive para tablets pequeñas */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px; /* Añadir espacio entre elementos */
+    padding: 50px 25px;
+  }
+  
+  .slogan {
+    font-size: 3.8rem; /* Un poco más grande para mejor legibilidad */
+    grid-row: 1;
+    padding-top: 0;
+    margin-bottom: 0; /* Ajustado porque ahora usamos gap */
+  }
+  
+  .pedido-btn {
+    grid-row: 2;
+    font-size: 1.8rem;
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px 25px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 576px) {
+  .container {
+    padding: 40px 20px;
+    gap: 25px;
+  }
+  
+  .slogan {
+    font-size: 2.8rem; /* Un poco más grande para mejor legibilidad */
+    line-height: 1.3;
+  }
+  
+  .pedido-btn {
+    font-size: 1.6rem; /* Ligeramente más grande para mejor usabilidad */
+    width: 90%;
+    padding: 14px 20px;
+    border-radius: 22px; /* Ajustar el radio para tamaño más pequeño */
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 375px) {
+  .container {
+    padding: 30px 15px;
+  }
+  
+  .slogan {
+    font-size: 2.2rem;
+  }
+  
+  .pedido-btn {
+    font-size: 1.4rem;
+    width: 95%;
+    padding: 12px 15px;
+  }
 }
