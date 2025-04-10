@@ -18,7 +18,7 @@ import { AdminAuthGuard } from './guards/auth-guard.guard';
 import { CrearToppingsComponent } from './pages/crear-toppings/crear-toppings.component';
 import { CrearIceCreamComponent } from './pages/crear-iceCream/crear-iceCream.component';
 import { CrearProductosComponent } from './pages/crear-productos/crear-productos.component';
-import { MilshakesProductoComponent } from './pages/bebidas-milshakes/milshakes-producto.component';
+import { MilshakesProductoComponent } from './pages/milshakes-producto/milshakes-producto.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

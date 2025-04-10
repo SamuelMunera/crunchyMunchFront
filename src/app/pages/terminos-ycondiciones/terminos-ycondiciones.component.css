@@ -1,28 +1,185 @@
-section {
+section.container {
     background-color: #FB9CD6;
-    height: 80%;
-    margin-left: 10%;
-    margin-top: 5%;
-    margin-right: 10%;
-    padding-left: 2%;
-    padding-right: 2%;
-    
-    border-radius: 20px;
-    
+    height: 600px; /* Altura aumentada */
+    max-height: 85vh; /* Aumentado para permitir más espacio */
+    margin-left: 8%; /* Reducido para permitir más ancho */
+    margin-right: 8%; /* Reducido para permitir más ancho */
+    margin-top: 4%;
+    padding: 2.5% 4%;
+    border-radius: 25px; /* Ligeramente más redondeado */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18); /* Sombra más pronunciada */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  h1 {
+    padding-top: 2%;
+    font-family: 'superReduce', sans-serif;
+    font-size: 55px; /* Título más grande */
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  
+  .scrollable-content {
+    overflow-y: auto;
+    padding-right: 18px; /* Más espacio para la barra */
+    flex-grow: 1;
+  }
+  
+  /* Estilizando la barra de desplazamiento */
+  .scrollable-content::-webkit-scrollbar {
+    width: 12px; /* Barra más ancha */
+  }
+  
+  .scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  
+  h2 {
+    font-family: 'brownBeige', sans-serif;
+    font-size: 42px; /* Subtítulos más grandes */
+    color: white;
+    margin-top: 28px;
+    margin-bottom: 18px;
+    -webkit-text-stroke: 0.2px black;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 6px 18px;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 14px;
+    display: inline-block;
+  }
+  
+  p {
+    font-family: 'brownBeige', sans-serif;
+    font-size: 34px; /* Texto más grande */
+    color: white;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    line-height: 1.35;
+  }
+  
+  .term-section {
+    margin-bottom: 30px;
+  }
+  
+  .term-content {
+    padding-left: 25px;
+  }
+  
+  .term-item {
+    font-weight: bold;
+    margin-right: 12px;
+    padding: 3px 10px;
+    background-color: rgba(255,255,255,0.25);
+    border-radius: 8px;
+  }
+  
+  .highlight {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 992px) {
+    section.container {
+      height: 550px;
+      margin-left: 6%;
+      margin-right: 6%;
     }
-    h1{
-        padding-top: 2%;
-        font-family: 'superReduce', sans-serif;
-        font-size: 50px;
-        color: white;
-        text-align: center;
-        margin-top: 5%;
-        -webkit-text-stroke: .5px black; 
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    }    
-    p{
-        font-family: 'brownBeige', sans-serif;
-        font-size: 32px;
-        color:white;
-        margin-top:  16px;   
+    
+    h1 {
+      font-size: 45px;
+      margin-bottom: 20px;
     }
+    
+    h2 {
+      font-size: 38px;
+    }
+    
+    p {
+      font-size: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    section.container {
+      margin-left: 4%;
+      margin-right: 4%;
+      height: 500px;
+      padding: 3% 5% 3% 3%;
+    }
+    
+    h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+    
+    h2 {
+      font-size: 34px;
+      margin-top: 22px;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      font-size: 26px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+    }
+    
+    .term-content {
+      padding-left: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    section.container {
+      margin-left: 2%;
+      margin-right: 2%;
+      height: 450px;
+      padding: 4% 5% 4% 3%;
+    }
+    
+    h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+    
+    h2 {
+      font-size: 28px;
+      padding: 5px 10px;
+      margin-top: 18px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 22px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .term-content {
+      padding-left: 12px;
+    }
+    
+    .term-item {
+      padding: 2px 6px;
+    }
+  }

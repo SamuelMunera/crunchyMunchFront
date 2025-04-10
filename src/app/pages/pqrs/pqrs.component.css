@@ -1,57 +1,45 @@
-section {
-background-color: #FB9CD6;
-height: 80%;
-margin-left: 10%;
-margin-top: 5%;
-margin-right: 10%;
-padding-left: 2%;
-border-radius: 20px;
-
-}
-
-h1{
+section.container {
+    background-color: #FB9CD6;
+    width: 80%;
+    max-width: 1000px;
+    margin: 5% auto;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  h1 {
     padding-top: 2%;
     font-family: 'superReduce', sans-serif;
-    font-size: 50px;
+    font-size: clamp(30px, 5vw, 50px);
     color: white;
     text-align: center;
-    margin-top: 5%;
-    -webkit-text-stroke: .5px black; 
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-     
-}
-input {
-    width: 200px;
-    padding: 8px;
-    border: 2px solid white;
-    border-radius: 10px;
-    background-color: #ffe6f2; /* Un rosa claro */
-    color: #333;
-    font-size: 14px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    
-}
-
-input:focus {
-    outline: none;
-    border-color: #ff66b2; /* Un rosa más fuerte */
-    background-color: #fff0f5;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-}
-
-
-p{
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  p {
     font-family: 'brownBeige', sans-serif;
-    font-size: 20px;
-}
-.name{width: 300px;}
-.date{
-    width: 200px;
-    padding: 8px;
+    font-size: clamp(16px, 2vw, 20px);
+    margin: 5px 0;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
     border: 2px solid white;
     border-radius: 10px;
     background-color: #ffe6f2;
@@ -60,65 +48,169 @@ p{
     font-family: 'Comic Sans MS', cursive, sans-serif;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
-    margin-left: 10%;
-    appearance: none; /* Oculta el estilo predeterminado en algunos navegadores */
-}
-.date:focus {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
     outline: none;
     border-color: #ff66b2;
     background-color: #fff0f5;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-}
-    
-
-.phone{margin-left: 10%;}
-.message{
-width: 90%; /* Mantiene el ancho ajustado */
-    
-    height: 120px; /* Ajusta la altura según necesidad */
+  }
+  
+  .date {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #ffe6f2;
+    color: #333;
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    appearance: none; /* Oculta el estilo predeterminado en algunos navegadores */
+    box-sizing: border-box;
+  }
+  
+  .date:focus {
+    outline: none;
+    border-color: #ff66b2;
+    background-color: #fff0f5;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  }
+  
+  .message {
+    width: 100%;
+    height: 120px;
     padding: 10px;
     border: 2px solid #ffffff;
     border-radius: 10px;
     background-color: #ffe6f2;
-    font-family: 'Comic Sans MS',  sans-serif;
+    font-family: 'Comic Sans MS', sans-serif;
     font-size: 14px;
-    resize: none; /* Evita que el usuario lo agrande */
+    resize: none;
     box-sizing: border-box;
-    text-align: left; /* Asegura que el texto esté alineado a la izquierda */
-   
-    line-height: 1.5; /* Mejora la legibilidad */
-    overflow-y: auto; /* Muestra scroll si el contenido es grande */
+    text-align: left;
+    line-height: 1.5;
+    overflow-y: auto;
     display: block;
-    }
-
-article{
-    display:grid;
- grid-template-columns: 1fr 1fr;
-    
-}
-button {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .message:focus {
+    outline: none;
+    border-color: #ff66b2;
+    background-color: #fff0f5;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  }
+  
+  button {
     display: block;
-    width: 200px; /* Ajusta el ancho según necesites */
+    width: 200px;
     padding: 12px;
-    margin: 30px auto ; /* Centra el botón horizontalmente */
+    margin: 25px auto;
     border: none;
-    background-color: #76B6F6; /* Color rosa pastel */
+    background-color: #76B6F6;
     color: white;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     font-weight: 100;
     border-radius: 12px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'superReduce', sans-serif;
-}
-
-button:hover {
-    background-color: #6399ce; /* Un tono más oscuro al pasar el mouse */
-    transform: scale(1.05); /* Efecto de agrandamiento */
-}
-
-button:active {
+  }
+  
+  button:hover {
+    background-color: #6399ce;
+    transform: scale(1.05);
+  }
+  
+  button:active {
     background-color: #4a7199;
-    transform: scale(0.95); /* Efecto al presionar */
-}
+    transform: scale(0.95);
+  }
+  
+  button:disabled {
+    background-color: #a8cdf7;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+  }
+  
+  /* Media queries para responsividad */
+  @media screen and (max-width: 768px) {
+    section.container {
+      width: 90%;
+      padding: 20px;
+      margin: 4% auto;
+    }
+    
+    article {
+      gap: 15px;
+    }
+    
+    button {
+      width: 180px;
+      padding: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    section.container {
+      width: 95%;
+      padding: 15px;
+      margin: 3% auto;
+    }
+    
+    article {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    
+    .date, .phone {
+      margin-left: 0;
+    }
+    
+    .name {
+      width: 100%;
+    }
+    
+    h1 {
+      padding-top: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .message {
+      height: 100px;
+    }
+    
+    button {
+      width: 100%;
+      max-width: 200px;
+      margin: 20px auto;
+    }
+  }
+  
+  @media screen and (max-width: 380px) {
+    section.container {
+      width: 98%;
+      padding: 12px;
+      margin: 2% auto;
+      border-radius: 15px;
+    }
+    
+    input, .date, .message {
+      padding: 8px;
+    }
+    
+    h1 {
+      padding-top: 5px;
+      margin-bottom: 12px;
+    }
+  }

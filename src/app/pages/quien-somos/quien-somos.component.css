@@ -1,20 +1,119 @@
-p{
+/* Estilos base originales */
+p {
     font-family: "brownBeige", sans-serif;
-    color:white;
+    color: white;
     font-weight: 100;
-    font-size:40px;
-}
-h2{
+    font-size: 40px;
+  }
+  
+  h2 {
     font-family: "superReduce", sans-serif;
-    color:white;
+    color: white;
     font-weight: 50;
-    font-size:80px;
-    -webkit-text-stroke: 1.5px black; 
+    font-size: 80px;
+    -webkit-text-stroke: 1.5px black;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     padding: 0px 0px 50px 0px;
-}
-div{
-display: flex;
-align-items: center;
-}
-
+  }
+  
+  div {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ajustes para la imagen del oso */
+  .image {
+    position: relative;
+    flex: 1;
+  }
+  
+  .image img {
+    width: 120%; /* Hago la imagen más grande */
+    max-width: none; /* Permito que supere el tamaño del contenedor */
+    position: relative;
+    z-index: 2; /* Aseguro que esté por encima */
+    transform: translateX(-10%); /* Lo saco un poco del recuadro hacia la izquierda */
+  }
+  
+  /* Estilos para la sección de texto */
+  .about {
+    flex: 1.2;
+    padding-left: 20px;
+    z-index: 1;
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 1200px) {
+    .image img {
+      width: 110%;
+      transform: translateX(-5%);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    p {
+      font-size: 32px;
+    }
+    
+    h2 {
+      font-size: 65px;
+      padding: 0px 0px 30px 0px;
+    }
+    
+    .image img {
+      width: 100%;
+      transform: translateX(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    div {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    p {
+      font-size: 28px;
+    }
+    
+    h2 {
+      font-size: 55px;
+      padding: 0px 0px 25px 0px;
+    }
+    
+    .image {
+      width: 70%;
+    }
+    
+    .image img {
+      width: 130%;
+      transform: translateX(-15%);
+    }
+    
+    .about {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    p {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      font-size: 42px;
+      padding: 0px 0px 20px 0px;
+    }
+    
+    .image {
+      width: 90%;
+    }
+    
+    .image img {
+      width: 120%;
+      transform: translateX(-10%);
+    }
+  }

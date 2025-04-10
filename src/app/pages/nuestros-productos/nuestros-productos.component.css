@@ -8,6 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   padding: 20px;
   background-color: #f5f5f5;
@@ -15,7 +16,7 @@ body {
 
 .carousel-container {
   width: 100%;
-  max-width: 900px; /* Aumentado de 600px a 900px */
+  max-width: 900px;
   overflow: hidden;
   position: relative;
   border-radius: 12px;
@@ -32,30 +33,26 @@ body {
 
 .carousel img {
   width: 20%; /* Cada imagen ocupa 1/5 del ancho total */
-  height: 500px; /* Aumentado de 300px a 500px */
+  height: auto; /* Altura automática para mantener proporción */
   object-fit: cover; /* Mantiene la proporción sin deformar */
+  max-height: 500px; /* Altura máxima en pantallas grandes */
 }
 
 /* Animación con pausas entre cada imagen */
 @keyframes slide {
-  0%,
-  15% {
+  0%, 15% {
     transform: translateX(0%);
   } /* Imagen 1 - se mantiene por 15% del tiempo */
-  20%,
-  35% {
+  20%, 35% {
     transform: translateX(-20%);
   } /* Imagen 2 - se mantiene por 15% del tiempo */
-  40%,
-  55% {
+  40%, 55% {
     transform: translateX(-40%);
   } /* Imagen 3 - se mantiene por 15% del tiempo */
-  60%,
-  75% {
+  60%, 75% {
     transform: translateX(-60%);
   } /* Imagen 4 - se mantiene por 15% del tiempo */
-  80%,
-  95% {
+  80%, 95% {
     transform: translateX(-80%);
   } /* Imagen 5 - se mantiene por 15% del tiempo */
   100% {
@@ -65,10 +62,9 @@ body {
 
 .button-container {
   margin-top: 40px;
-  gap: 70px;
+  gap: 70px; /* Restaurado al valor original */
   display: flex;
   justify-content: center;
-
 }
 
 button {
@@ -79,17 +75,78 @@ button {
   border-radius: 10px;
   cursor: pointer;
   font-family: "brownBeige", sans-serif;
-  font-size: 30px;
-  width:250px;
-  height: 70px;
-  transition: transform 0.3s ease, 
-  box-shadow 0.3s ease;
+  font-size: 30px; /* Restaurado al valor original */
+  width: 250px; /* Restaurado al valor original */
+  height: 70px; /* Restaurado al valor original */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 button:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Media queries para hacer el diseño responsive */
+@media screen and (max-width: 900px) {
+  .carousel-container {
+    max-width: 100%;
   }
   
-  button:active {
-    transform: scale(0.95);
+  .button-container {
+    gap: 30px; /* Reducir el espacio entre botones en pantallas más pequeñas */
   }
+  
+  button {
+    width: 200px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .carousel img {
+    max-height: 400px;
+  }
+  
+  .button-container {
+    gap: 20px;
+  }
+  
+  button {
+    width: 180px;
+    height: 60px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .carousel img {
+    max-height: 300px;
+  }
+  
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  button {
+    width: 250px; /* Restaurado al valor original para móviles */
+    height: 60px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .carousel img {
+    max-height: 200px;
+  }
+  
+  button {
+    width: 220px;
+    height: 50px;
+  }
+}
