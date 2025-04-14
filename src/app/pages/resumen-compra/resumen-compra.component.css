@@ -1,0 +1,861 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .formulario {
+    font-family: 'superReduce', sans-serif;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    font-weight: 50;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .seccion {
+    background-color: rgba(255, 136, 194, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .seccion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 136, 194, 0.3);
+  }
+  
+  .seccion h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+  }
+  
+  .pedido-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .campos {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .campos label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .campos input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border 0.3s ease;
+    font-size: 16px;
+  }
+  
+  .campos input[type="text"]:focus {
+    outline: none;
+    border-color: #ff88c2;
+    box-shadow: 0 0 0 2px rgba(255, 136, 194, 0.2);
+  }
+  
+  .radio-group {
+    margin-top: 10px;
+  }
+  
+  .radio-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 6px 10px;
+    border-radius: 8px;
+  }
+  
+  .radio-group label:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .radio-group input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+  }
+  
+  .tiempo {
+    font-weight: bold;
+    color: #ff0000;
+    margin-top: 15px;
+    font-size: 16px;
+    animation: pulse 2s infinite;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .mapa {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .mapa iframe {
+    max-width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .pregunta {
+    font-weight: bold;
+    margin: 15px 0 8px;
+    font-family: 'brownBeige', sans-serif;
+  }
+  
+  .productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .item {
+    background-color: #ff88c2;
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .producto-imagen {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .producto-imagen img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .producto-nombre {
+    font-weight: bold;
+    margin: 5px 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .producto-cantidad {
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .producto-toppings, .producto-sabores {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .toppings-title, .sabores-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .toppings-list, .sabores-list {
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+  }
+  
+  .producto-precio {
+    font-weight: bold;
+    color: #000;
+    font-size: 18px;
+    margin-top: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  
+  .eliminar-btn {
+    margin-top: 12px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .eliminar-btn:hover {
+    background-color: #f50057;
+    transform: scale(1.05);
+  }
+  
+  .total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .terminos {
+    background-color: #bbbfc4;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'brownBeige', sans-serif;
+    transition: background-color 0.3s ease;
+  }
+  
+  .terminos:hover {
+    background-color: #a8adb3;
+  }
+  
+  .terminos input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 8px;
+  }
+  
+  .finalizar {
+    background-color: #ff88c2;
+    color: white;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 136, 194, 0.3);
+    letter-spacing: 1px;
+  }
+  
+  .finalizar:hover {
+    background-color: #ff6eb0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 136, 194, 0.5);
+  }
+  
+  .finalizar:active {
+    transform: translateY(1px);
+  }
+  
+  /* Estilos para el formulario de dirección */
+  .direccion-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .direccion-container h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .direccion-campos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .recargo-domicilio {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    border-left: 4px solid #ff4081;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recargo-domicilio span {
+    color: #ff4081;
+    font-size: 18px;
+  }
+  
+  .recoger-info {
+    display: block;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Carrito vacío */
+  .carrito-vacio {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px 0;
+    border: 2px dashed #ff88c2;
+  }
+  
+  .carrito-vacio p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .volver-comprar {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  .btn-volver {
+    background-color: #ff88c2;
+    color: white;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 136, 194, 0.3);
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-volver:hover {
+    background-color: #ff6eb0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 136, 194, 0.5);
+  }
+  
+  /* Estilos para los métodos de pago */
+  .metodos-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .metodo-pago-option {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .metodo-pago-option:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+  
+  .metodo-pago-option label {
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .metodo-pago-option input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+  }
+  
+  /* Contenedor para tarjeta */
+  .tarjeta-container {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .boton-pago-placeholder {
+    height: 60px;
+    border: 2px dashed #ff88c2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-style: italic;
+  }
+  
+  /* Contenedor para transferencia */
+  .transferencia-container {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .qr-code-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ff88c2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .comprobante-message {
+    color: #ff4081;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 64, 129, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 14px;
+  }
+  
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #ff6b6b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Estilos para mensajes de error */
+  .error-message {
+    background-color: #ffecec;
+    border: 1px solid #f5aca6;
+    color: #cc0033;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  /* Estilos para campos requeridos */
+  input:required {
+    border-left: 3px solid #ff6b6b;
+  }
+  
+  /* Botón deshabilitado */
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Estilos para la confirmación */
+  .confirmacion {
+    text-align: center;
+    padding: 20px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+  
+  .confirmacion h3 {
+    color: #155724;
+    margin-bottom: 10px;
+  }
+  
+  .confirmacion p {
+    margin-bottom: 15px;
+  }
+  
+  .confirmacion .orden-id {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .formulario {
+      margin: 10px;
+      padding: 15px;
+    }
+    
+    .seccion {
+      padding: 15px;
+    }
+    
+    .pedido-info {
+      flex-direction: column;
+    }
+    
+    .mapa iframe {
+      height: 200px;
+      width: 100%;
+    }
+    
+    .productos {
+      grid-template-columns: 1fr;
+    }
+    
+    .item {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .seccion h2 {
+      font-size: 18px;
+    }
+    
+    .formulario {
+      padding: 10px;
+    }
+    
+    .campos input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+    }
+    
+    .mapa iframe {
+      height: 180px;
+    }
+    
+    .finalizar {
+      width: 100%;
+    }
+    
+    .direccion-campos {
+      grid-template-columns: 1fr;
+    }
+    
+    .boton-pago-placeholder, .qr-code-placeholder {
+      width: 100%;
+    }
+    
+    .qr-code-placeholder {
+      height: 120px;
+    }
+    
+    .comprobante-message {
+      font-size: 12px;
+    }
+  }
+
+  /* Estilos para el mensaje de notificación */
+.mensaje-notificacion {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #25a244;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeOut 5s forwards;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Estilos para la sección de confirmación de pedido */
+.confirmacion {
+  background-color: rgba(212, 237, 218, 0.8) !important;
+  text-align: center;
+  animation: zoomIn 0.5s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.confirmacion h2 {
+  color: #155724;
+  font-size: 28px !important;
+  margin-bottom: 15px;
+}
+
+.confirmacion p {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #2d6a4f;
+}
+
+.confirmacion .orden-id {
+  background-color: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px 0;
+  border: 1px dashed #25a244;
+}
+
+/* Ajuste para el botón dentro de confirmación */
+.confirmacion .btn-volver {
+  margin-top: 15px;
+  background-color: #ff88c2;
+  transition: all 0.3s ease;
+}
+
+.confirmacion .btn-volver:hover {
+  background-color: #ff6eb0;
+}
+
+/* Mejorar estilo de los checkboxes de aceptar términos */
+.terminos label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+
+.terminos input[type="checkbox"] {
+  position: relative;
+  top: 1px;
+}
+
+/* Loading overlay mejorado */
+.loading-overlay {
+  backdrop-filter: blur(3px);
+}
+
+.loading-overlay p {
+  margin-top: 15px;
+  color: #ff4081;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+}
+
+/* Mensaje de error personalizado */
+.error-message {
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border-left: 4px solid #cc0033;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* Mejorar transición para mostrar/ocultar secciones condicionales */
+[hidden], *[hidden] {
+  display: none !important;
+}
+
+/* Estado de los campos inválidos */
+input:invalid {
+  border-color: #ff4081;
+  box-shadow: 0 0 0 2px rgba(255, 64, 129, 0.2);
+}
+
+/* Cambiar cursor para radio buttons y checkboxes */
+input[type="radio"], 
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* Mejorar los campos requeridos con un asterisco */
+input:required + label::after {
+  content: "*";
+  color: #ff4081;
+  margin-left: 4px;
+}
+
+/* Estilos específicos para tamaños de pantalla medianos */
+@media (max-width: 992px) {
+  .pedido-info {
+    flex-direction: column;
+  }
+  
+  .campos, .mapa {
+    width: 100%;
+  }
+}
+
+/* Ajustar estilos para dispositivos más pequeños */
+@media (max-width: 600px) {
+  .formulario {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .seccion h2 {
+    font-size: 18px;
+  }
+  
+  .campos input[type="text"] {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .producto-imagen {
+    height: 100px;
+  }
+  
+  .producto-imagen img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .producto-nombre {
+    font-size: 14px;
+  }
+  
+  .producto-precio {
+    font-size: 16px;
+  }
+  
+  .confirmacion h2 {
+    font-size: 22px !important;
+  }
+  
+  .confirmacion .orden-id {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+  
+  .metodo-pago-option {
+    padding: 10px;
+  }
+  
+  .qr-code-placeholder {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .terminos {
+    padding: 10px;
+  }
+  
+  .terminos label {
+    font-size: 14px;
+  }
+  
+  .finalizar {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 350px) {
+  .seccion {
+    padding: 10px;
+  }
+  
+  .producto-imagen {
+    height: 80px;
+  }
+  
+  .producto-imagen img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .metodos-pago {
+    gap: 10px;
+  }
+  
+  .qr-code-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .recargo-domicilio span {
+    font-size: 16px;
+  }
+}

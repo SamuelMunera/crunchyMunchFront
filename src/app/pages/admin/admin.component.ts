@@ -18,12 +18,12 @@ export class AdminComponent {
   // Verificar en la inicialización que el usuario tiene permisos
   ngOnInit() {
     if (!this.authService.isAdminLoggedIn()) {
-      this.router.navigate(['/admin-login']);
+      this.router.navigate(['/Admin Login']);
     }
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/admin-login']);
+    this.router.navigate(['/Admin Login']);
   }
 }

@@ -19,6 +19,8 @@ import { CrearToppingsComponent } from './pages/crear-toppings/crear-toppings.co
 import { CrearIceCreamComponent } from './pages/crear-iceCream/crear-iceCream.component';
 import { CrearProductosComponent } from './pages/crear-productos/crear-productos.component';
 import { MilshakesProductoComponent } from './pages/milshakes-producto/milshakes-producto.component';
+import { ResumenCompraComponent } from './pages/resumen-compra/resumen-compra.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +36,9 @@ export const routes: Routes = [
   { path: 'Registro', component: RegisterComponent },
   { path: 'Milkshake', component: MilshakesProductoComponent },
   { path: 'dadada', component: AdminComponent },
-  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'Admin Login', component: AdminLoginComponent },
+  { path: 'Resumen de compra', component: ResumenCompraComponent },
+ 
   {
     path: 'admin/dashboard',
     component: AdminComponent,
@@ -54,7 +58,6 @@ export const routes: Routes = [
   component: CrearProductosComponent,
   canActivate: [AdminAuthGuard],
 },
-  // Otras rutas de la aplicación
-  { path: '', redirectTo: '/admin-login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/admin-login' },
+
+ 
 ];

@@ -1,1 +1,187 @@
-<p>resumen-compra works!</p>
+<div class="formulario">
+  <!-- Mensaje de notificación -->
+  <div *ngIf="mostrarMensaje" class="mensaje-notificacion">
+    {{ mensajeExito }}
+  </div>
+  
+  <!-- Sección de confirmación de pedido -->
+  <section *ngIf="pedidoCreado" class="seccion confirmacion">
+    <h2>¡PEDIDO CONFIRMADO!</h2>
+    <p>Tu pedido ha sido procesado correctamente.</p>
+    <p class="orden-id">Número de pedido: {{ pedidoId }}</p>
+    <p>Gracias por tu compra. Recibirás un correo con los detalles de tu pedido.</p>
+    <button routerLink="/productos" class="btn-volver">Seguir comprando</button>
+  </section>
+
+  <!-- Formulario de pedido (solo visible si no hay pedido creado) -->
+  <div *ngIf="!pedidoCreado">
+    <section class="seccion pedido">
+      <h2>Información del Pedido</h2>
+      <div class="pedido-info">
+        <div class="campos">
+          <label>Nombre:
+            <input type="text" [(ngModel)]="clienteInfo.nombre" placeholder="Ingresa tu nombre" />
+          </label>
+          <label>Apellido:
+            <input type="text" [(ngModel)]="clienteInfo.apellido" placeholder="Ingresa tu apellido" />
+          </label>
+          <label>Número telefónico:
+            <input type="text" [(ngModel)]="clienteInfo.telefono" placeholder="Ej: 300 123 4567" />
+          </label>
+          <label>¿Te gustaría ponerle alguna dedicatoria?
+            <input type="text" [(ngModel)]="clienteInfo.dedicatoria" placeholder="Escribe tu mensaje especial aquí" />
+          </label>
+          <p class="pregunta">¿Te gustaría recibir a domicilio tus productos o recogerlos en punto?</p>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="entrega" value="domicilio" 
+                    [checked]="entregaInfo.tipoPedido === 'domicilio'"
+                    (change)="cambiarTipoEntrega('domicilio')" /> Domicilio
+            </label>
+            <label>
+              <input type="radio" name="entrega" value="recoger" 
+                    [checked]="entregaInfo.tipoPedido === 'recoger'"
+                    (change)="cambiarTipoEntrega('recoger')" /> Recoger
+            </label>
+          </div>
+          
+          <!-- Contenedor para información de domicilio -->
+          <div *ngIf="entregaInfo.tipoPedido === 'domicilio'" class="direccion-container">
+            <h3>Información de envío:</h3>
+            <div class="direccion-campos">
+              <div>
+                <label>Dirección:
+                  <input type="text" [(ngModel)]="entregaInfo.direccion" placeholder="Calle, número, apto" />
+                </label>
+              </div>
+              <div>
+                <label>Barrio:
+                  <input type="text" [(ngModel)]="entregaInfo.barrio" placeholder="Tu barrio" />
+                </label>
+              </div>
+              <div>
+                <label>Ciudad:
+                  <input type="text" [(ngModel)]="entregaInfo.ciudad" placeholder="Tu ciudad" />
+                </label>
+              </div>
+              <div>
+                <label>Referencias:
+                  <input type="text" [(ngModel)]="entregaInfo.referencias" placeholder="Punto de referencia" />
+                </label>
+              </div>
+            </div>
+            <div class="recargo-domicilio">
+              Recargo por domicilio: <span>{{ recargoDomicilio | currency:'COP':'symbol':'1.0-0' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contenedor para información de recoger -->
+        <div *ngIf="entregaInfo.tipoPedido === 'recoger'" class="mapa recoger-info">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0424421720104!2d-75.3871780241843!3d6.124990927664341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e469f3c1b6e9913%3A0xe6d83b4c53491344!2sCrunchy%20Munch!5e0!3m2!1ses!2sco!4v1744325698219!5m2!1ses!2sco" 
+            width="400" height="300" style="border:0;" 
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <p class="tiempo">¡Tus productos estarán listas de 15 a 20 minutos!</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="seccion resumen">
+      <h2>Resumen de tu Pedido</h2>
+      
+      <!-- Mensaje cuando no hay productos -->
+      <div *ngIf="!hayProductos" class="carrito-vacio">
+        <p>No hay productos en tu carrito. Por favor, agrega algunos productos antes de realizar el pedido.</p>
+      </div>
+      
+      <!-- Lista de productos -->
+      <div class="productos" *ngIf="hayProductos">
+        <div class="item" *ngFor="let item of cartItems">
+          <!-- Manejo mejorado de imágenes -->
+          <div class="producto-imagen">
+            <img [src]="getImageUrl(item.product.photo)" [alt]="item.product.name" />
+          </div>
+          <p class="producto-nombre">{{ item.product.name }}</p>
+          <p class="producto-cantidad">Cantidad: {{ item.quantity }}</p>
+          
+          <!-- Mostrar topping si existe -->
+          <div class="producto-toppings" *ngIf="getToppingName(item) !== 'Sin topping'">
+            <p class="toppings-title">Topping:</p>
+            <p class="toppings-list">{{ getToppingName(item) }}</p>
+          </div>
+          
+          <!-- Mostrar helado si existe -->
+          <div class="producto-sabores" *ngIf="getIceCreamName(item) !== 'Sin helado'">
+            <p class="sabores-title">Sabor de Helado:</p>
+            <p class="sabores-list">{{ getIceCreamName(item) }}</p>
+          </div>
+          
+          <span class="producto-precio">{{ calcularPrecioItem(item) | currency:'COP':'symbol':'1.0-0' }}</span>
+          <button class="eliminar-btn" (click)="eliminarProducto(item)">Eliminar</button>
+        </div>
+      </div>
+    </section>
+    
+    <section class="seccion pago" *ngIf="hayProductos">
+      <h2>Información del Pago</h2>
+      <p class="total">TOTAL A PAGAR: <strong>{{ totalPagar | currency:'COP':'symbol':'1.0-0' }}</strong></p>
+      
+      <div class="metodos-pago">
+        <!-- Opción de pago en efectivo -->
+        <div class="metodo-pago-option">
+          <label>
+            <input type="radio" name="pago" value="efectivo"
+                   [(ngModel)]="metodoPago" /> Efectivo
+          </label>
+        </div>
+  
+        <!-- Opción de pago con tarjeta -->
+        <div class="metodo-pago-option">
+          <label>
+            <input type="radio" name="pago" value="tarjeta"
+                   [(ngModel)]="metodoPago" /> Tarjeta débito/crédito
+          </label>
+          
+          <!-- Contenedor para el botón de pago (aparece cuando se selecciona tarjeta) -->
+          <div *ngIf="metodoPago === 'tarjeta'" class="tarjeta-container">
+            <div class="boton-pago-placeholder">
+              <p>Espacio para botón de pago</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Opción de transferencia bancaria -->
+        <div class="metodo-pago-option">
+          <label>
+            <input type="radio" name="pago" value="transferencia"
+                   [(ngModel)]="metodoPago" /> Transferencia bancaria
+          </label>
+          
+          <!-- Contenedor para el código QR (aparece cuando se selecciona transferencia) -->
+          <div *ngIf="metodoPago === 'transferencia'" class="transferencia-container">
+            <div class="qr-code-placeholder">
+              <p>Espacio para código QR</p>
+            </div>
+            <p class="comprobante-message">Mostrar foto del comprobante al domiciliario a la hora de la entrega</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class="terminos" *ngIf="hayProductos">
+      <label>
+        <input type="checkbox" [(ngModel)]="aceptoTerminos" /> 
+        TÉRMINOS Y CONDICIONES, LEER TÉRMINOS Y CONDICIONES
+      </label>
+    </div>
+    
+    <button class="finalizar" (click)="finalizarCompra()" *ngIf="hayProductos">FINALIZAR COMPRA</button>
+    
+    <!-- Mensaje cuando no hay productos -->
+    <div *ngIf="!hayProductos" class="volver-comprar">
+      <button routerLink="/" class="btn-volver">Volver a la tienda</button>
+    </div>
+  </div>
+</div>

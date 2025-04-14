@@ -1,4 +1,3 @@
-
 <div class="cart-container" *ngIf="cartService.cartVisibility()">
     <div class="cart-header">
         <h2>Tu Carrito</h2>
@@ -12,8 +11,8 @@
         
         <div *ngFor="let item of cartItems" class="cart-item">
             <!-- Añadimos logging y manejo de errores -->
-            <img [src]="getImageUrl(item.product)" 
-                 alt="{{ item.product.name }}" 
+            <img [src]="getImageUrl(item.product)"
+                 alt="{{ item.product.name }}"
                  (error)="handleImageError($event)">
             <p>{{ item.product.name }}</p>
             <p>Cantidad: {{ item.quantity }}</p>
@@ -25,6 +24,6 @@
         <div class="total">
             <p>Total: {{ calculateTotal() | currency }}</p>
         </div>
-        <button class="checkout-btn">Finalizar Compra</button>
+       <button (click)="checkoutProcess()" class="checkout-btn">Finalizar Compra</button>
     </div>
 </div>

@@ -44,7 +44,7 @@ export class LoginComponent {
         console.log('Login exitoso', response);
         this.isLoading = false;
         // Redirigir al usuario a la página principal o dashboard
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Error en el login', error);
