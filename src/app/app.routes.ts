@@ -20,7 +20,7 @@ import { CrearIceCreamComponent } from './pages/crear-iceCream/crear-iceCream.co
 import { CrearProductosComponent } from './pages/crear-productos/crear-productos.component';
 import { MilshakesProductoComponent } from './pages/milshakes-producto/milshakes-producto.component';
 import { ResumenCompraComponent } from './pages/resumen-compra/resumen-compra.component';
-
+import { PedidosActivosComponent } from './pages/pedidos-activos/pedidos-activos.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'dadada', component: AdminComponent },
   { path: 'Admin Login', component: AdminLoginComponent },
   { path: 'Resumen de compra', component: ResumenCompraComponent },
- 
+
   {
     path: 'admin/dashboard',
     component: AdminComponent,
@@ -54,10 +54,16 @@ export const routes: Routes = [
     component: CrearIceCreamComponent,
     canActivate: [AdminAuthGuard],
   },
-  {path: 'admin/Crear productos',
-  component: CrearProductosComponent,
-  canActivate: [AdminAuthGuard],
-},
+  {
+    path: 'admin/pedidos activos',
+    component: PedidosActivosComponent,
 
- 
+    canActivate: [AdminAuthGuard],
+  },
+  {
+    path: 'admin/',
+    component: PedidosActivosComponent,
+
+    canActivate: [AdminAuthGuard],
+  },
 ];

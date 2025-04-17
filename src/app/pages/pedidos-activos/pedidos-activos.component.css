@@ -1,0 +1,353 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-pedidos-container {
+  font-family: 'superReduce', sans-serif;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  font-weight: 50;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+}
+
+/* Estilos para los botones de filtrado */
+.filtros-container {
+  background-color: rgba(255, 136, 194, 0.2);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 136, 194, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.filtros-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 136, 194, 0.2);
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+  background-color: rgba(255, 136, 194, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 136, 194, 0.2);
+}
+
+.filter-btn.active {
+  background-color: rgba(255, 136, 194, 0.7);
+  color: white;
+  border-color: rgba(255, 136, 194, 0.8);
+  box-shadow: 0 2px 6px rgba(255, 136, 194, 0.3);
+}
+
+.loading, .error, .no-pedidos {
+  text-align: center;
+  padding: 50px 0;
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.retry-button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  background-color: rgba(255, 136, 194, 0.7);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 136, 194, 0.3);
+}
+
+.retry-button:hover {
+  background-color: rgba(255, 136, 194, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 136, 194, 0.4);
+}
+
+.pedidos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.Card {
+  border: 1px solid rgba(221, 221, 221, 0.7);
+  border-radius: 16px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.Card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.cliente-info, .container1, .container2 {
+  padding: 15px;
+  border-radius: 12px;
+  background-color: rgba(255, 136, 194, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cliente-info:hover, .container1:hover, .container2:hover {
+  background-color: rgba(255, 136, 194, 0.15);
+  transform: translateY(-2px);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #333;
+  border-bottom: 1px solid rgba(255, 136, 194, 0.3);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order {
+  font-weight: bold;
+  margin-bottom: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.total {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.number {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.date, .type-order, .address, .payment, .payment-status {
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.estado-container {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.estado-select {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 136, 194, 0.4);
+  font-size: 1rem;
+  margin-left: 10px;
+  width: 150px;
+  transition: all 0.3s ease;
+}
+
+.estado-select:focus {
+  outline: none;
+  border-color: rgba(255, 136, 194, 0.8);
+  box-shadow: 0 0 0 2px rgba(255, 136, 194, 0.2);
+}
+
+/* Clases para los estados con colores estilo pastel */
+.status-pendiente {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+}
+
+.status-preparacion {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.status-camino {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.status-entregado {
+  background-color: #c3e6cb;
+  color: #155724;
+  border-color: #b1dfbb;
+}
+
+.status-cancelado {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+/* Estilo para datos específicos */
+.nombre, .telefono, .dedicatoria {
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dedicatoria {
+  font-style: italic;
+  border-left: 3px solid rgba(255, 136, 194, 0.7);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.Card {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+  .Card {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .container2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .Card {
+    grid-template-columns: 1fr;
+  }
+  
+  .container2 {
+    grid-column: auto;
+  }
+  
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .admin-pedidos-container {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .Card {
+    padding: 15px;
+  }
+  
+  .cliente-info, .container1, .container2 {
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  .number {
+    font-size: 1.3rem;
+  }
+  
+  .estado-select {
+    width: 120px;
+    font-size: 0.9rem;
+    margin-left: 5px;
+  }
+}
+
+/* Estilo para debug info */
+.debug-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  text-align: left;
+  font-family: monospace;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin: 0;
+}

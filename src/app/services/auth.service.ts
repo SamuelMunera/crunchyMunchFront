@@ -97,7 +97,37 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+  private decodeToken(token: string): any {
+    try {
+      // Decodificar token JWT manualmente
+      // El token tiene 3 partes separadas por puntos: header.payload.signature
+      const base64Url = token.split('.')[1]; // Obtenemos la parte del payload
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const payload = JSON.parse(window.atob(base64));
+      return payload;
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+      return null;
+    }
+  }
 
+  getUserId(): string | null {
+    try {
+      // Obtenemos el token primero
+      const token = this.getToken();
+      if (!token) {
+        return null;
+      }
+      
+      // Decodificamos el token JWT para obtener los datos del usuario
+      // (asumiendo que usas JWT y que el ID está en el payload)
+      const tokenPayload = this.decodeToken(token);
+      return tokenPayload?.userId || tokenPayload?._id || null;
+    } catch (error) {
+      console.error('Error al obtener ID de usuario:', error);
+      return null;
+    }
+  }
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
   }

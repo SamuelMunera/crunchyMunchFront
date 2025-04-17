@@ -1,59 +1,43 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
-  private apiUrl = 'http://localhost:3000/api';
+  private http: HttpClient = inject(HttpClient);
+  private readonly ApiUrl = 'http://localhost:3000/api/pedidos';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor() { }
 
-  crearPedido(pedido: any): Observable<any> {
-    const token = this.authService.getToken();
-    if (!token) {
-      console.error('No hay token disponible para crear el pedido');
-      return throwError(() => new Error('No estás autenticado. Por favor inicia sesión.'));
-    }
-  
-    return this.http.post(`${this.apiUrl}/pedidos/create`, pedido)
-      .pipe(
-        tap(response => {
-          console.log('Pedido creado exitosamente:', response);
-        }),
-        catchError(error => {
-          console.error('Error al crear pedido:', error);
-          return throwError(() => new Error(error.error?.message || 'Ha ocurrido un error al procesar tu solicitud'));
-        })
-      );
+  // Método para crear un pedido
+  createPedido(pedidoData: any): Observable<any> {
+    return this.http.post<any>(`${this.ApiUrl}/create`, pedidoData);
   }
 
-  obtenerPedidosUsuario(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/pedidos/usuario`)
-      .pipe(
-        catchError(error => {
-          console.error('Error al obtener pedidos:', error);
-          return throwError(() => new Error(error.error?.message || 'No se pudieron cargar los pedidos'));
-        })
-      );
+  // Método para obtener los pedidos del usuario actual
+  obtenerPedidosPorUsuarioId(): Observable<any> {
+    return this.http.get<any>(`${this.ApiUrl}/mis-pedidos`);
   }
 
-  obtenerPedidoPorId(pedidoId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/pedidos/${pedidoId}`)
-      .pipe(
-        catchError(error => {
-          console.error('Error al obtener pedido:', error);
-          return throwError(() => new Error(error.error?.message || 'No se pudo cargar el pedido'));
-        })
-      );
+  // Obtener pedido por ID
+  getPedidoById(pedidoId: string): Observable<any> {
+    return this.http.get<any>(`${this.ApiUrl}/${pedidoId}`);
   }
-  
+
+  // Actualizar comprobante de pago
+  actualizarComprobantePago(pedidoId: string, comprobanteData: any): Observable<any> {
+    return this.http.patch<any>(`${this.ApiUrl}/${pedidoId}/pago`, comprobanteData);
+  }
+
+  // Método para administradores - obtener todos los pedidos
+  obtenerTodosPedidos(): Observable<any> {
+    return this.http.get<any>(`${this.ApiUrl}/all-orders`);
+  }
+
+  // Método para actualizar el estado de un pedido
+  actualizarEstadoPedido(pedidoId: string, nuevoEstado: string): Observable<any> {
+    return this.http.patch<any>(`${this.ApiUrl}/${pedidoId}/estado`, { estado: nuevoEstado });
+  }
 }

@@ -15,17 +15,23 @@ export interface IceCreamInfo {
 }
 
 export interface Product {
-  _id?: string;  // Añadido el campo _id que viene del backend
+  _id?: string;
   name: string;
   photo: string;
   price: number;
-  // Referencias a toppings y helados
+  // Referencias
   toppingId?: string;
   iceCreamId?: string;
-  // Información completa de toppings y helados
+
+  // Info completa
   toppingInfo?: ToppingInfo;
   iceCreamInfo?: IceCreamInfo;
+
+  // ✅ Estos son necesarios para que el pedido se envíe correctamente
+  selectedTopping?: string;
+  selectedIceCream?: string;
 }
+
 
 export interface CartItem {
   product: Product;
@@ -73,16 +79,24 @@ export class CartService {
   addToCart(product: Product, quantity: number, toppingInfo?: ToppingInfo, iceCreamInfo?: IceCreamInfo): void {
     console.log('Adding to cart:', product, 'quantity:', quantity);
     console.log('Product photo URL:', product.photo);
+    console.log('Topping:', toppingInfo);
+    console.log('Ice Cream:', iceCreamInfo);
     
-    // Crear copia del producto con la información de topping y helado
-    const productWithExtras = {
-      ...product,
-      toppingInfo: toppingInfo || product.toppingInfo,
-      iceCreamInfo: iceCreamInfo || product.iceCreamInfo
-    };
+    // CORRECCIÓN: Asegurarse que se establezcan correctamente los IDs en el producto
+    const productCopy = { ...product };
+    
+    if (toppingInfo) {
+      productCopy.selectedTopping = toppingInfo.id;
+      productCopy.toppingId = toppingInfo.id;
+    }
+    
+    if (iceCreamInfo) {
+      productCopy.selectedIceCream = iceCreamInfo.id;
+      productCopy.iceCreamId = iceCreamInfo.id;
+    }
     
     // Generar una clave única para el producto con sus extras
-    const cartKey = this.generateCartItemKey(productWithExtras);
+    const cartKey = this.generateCartItemKey(productCopy);
     
     // Obtener el mapa actual
     const currentMap = this.cartMapSubject.getValue();
@@ -91,11 +105,11 @@ export class CartService {
     // Verificar si el producto ya está en el carrito
     if (!updatedMap.has(cartKey)) {
       // Si no existe, lo agregas al carrito
-      updatedMap.set(cartKey, { 
-        product: productWithExtras, 
-        quantity: quantity,
-        toppingInfo: toppingInfo,
-        iceCreamInfo: iceCreamInfo
+      updatedMap.set(cartKey, {
+        product: productCopy,
+        quantity,
+        toppingInfo,
+        iceCreamInfo
       });
     } else {
       // Si existe, actualizar la cantidad
@@ -120,12 +134,12 @@ export class CartService {
   private generateCartItemKey(product: Product): string {
     let key = product.name;
     
-    if (product.toppingInfo) {
-      key += `-topping:${product.toppingInfo.id}`;
+    if (product.selectedTopping || product.toppingId) {
+      key += `-topping:${product.selectedTopping || product.toppingId}`;
     }
     
-    if (product.iceCreamInfo) {
-      key += `-icecream:${product.iceCreamInfo.id}`;
+    if (product.selectedIceCream || product.iceCreamId) {
+      key += `-icecream:${product.selectedIceCream || product.iceCreamId}`;
     }
     
     return key;
@@ -173,7 +187,7 @@ export class CartService {
     }
   }
 
-  // Método para cargar el carrito desde localStorage
+  // Método para cargar el carrito desde localStorage con corrección para mantener selectedTopping y selectedIceCream
   private loadCartFromStorage(): void {
     try {
       const savedCart = localStorage.getItem('shopping-cart');
@@ -185,13 +199,24 @@ export class CartService {
         
         // Poblar el mapa manualmente para garantizar el tipo correcto
         cartData.forEach(([key, item]: [string, CartItem]) => {
+          // CORRECCIÓN: Asegúrate de que selectedTopping y selectedIceCream siempre estén presentes
+          if (item.toppingInfo) {
+            item.product.selectedTopping = item.toppingInfo.id;
+            item.product.toppingId = item.toppingInfo.id;
+          }
+          
+          if (item.iceCreamInfo) {
+            item.product.selectedIceCream = item.iceCreamInfo.id;
+            item.product.iceCreamId = item.iceCreamInfo.id;
+          }
+          
           loadedMap.set(key, item);
         });
         
         this.cartMapSubject.next(loadedMap);
         this.updateItemCount();
         
-        console.log('Carrito cargado desde localStorage');
+        console.log('Carrito cargado desde localStorage con datos completos');
       }
     } catch (e) {
       console.error('Error al cargar el carrito desde localStorage:', e);

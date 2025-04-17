@@ -195,8 +195,8 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     }
     
     // Validar campos obligatorios
-    if (!this.clienteInfo.nombre || !this.clienteInfo.apellido || !this.clienteInfo.telefono) {
-      alert('Por favor, completa todos los campos de información personal');
+    if (!this.clienteInfo.nombre || !this.clienteInfo.telefono) {
+      alert('Por favor, completa todos los campos obligatorios de información personal');
       return;
     }
     
@@ -214,16 +214,53 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
       return;
     }
     
-    // Preparar datos del pedido para enviar al backend
+    // Logging para depuración
+    console.log('Contenido del carrito antes de mapear:', this.cartItems);
+    
+    // Depuración detallada de cada item
+    this.cartItems.forEach((item, index) => {
+      console.log(`Producto ${index}:`, {
+        nombre: item.product.name,
+        toppingInfo: item.toppingInfo,
+        iceCreamInfo: item.iceCreamInfo,
+        selectedTopping: item.product.selectedTopping,
+        selectedIceCream: item.product.selectedIceCream,
+        toppingId: item.product.toppingId,
+        iceCreamId: item.product.iceCreamId
+      });
+    });
+    
+    // Preparar datos del pedido para enviar al backend - CORREGIDO
     const productos = this.cartItems.map(item => {
+      // Buscar los IDs de topping y helado en todas las posibles propiedades
+      const toppingId = item.product.selectedTopping || 
+                    (item.toppingInfo ? item.toppingInfo.id : null) || 
+                    item.product.toppingId || null;
+                    
+      const iceCreamId = item.product.selectedIceCream || 
+                     (item.iceCreamInfo ? item.iceCreamInfo.id : null) || 
+                     item.product.iceCreamId || null;
+      
+      // Log para depuración de cada producto
+      console.log(`Mapeando producto "${item.product.name}":`, {
+        toppingDirecto: item.product.selectedTopping,
+        toppingInfo: item.toppingInfo?.id,
+        toppingId: item.product.toppingId,
+        iceCreamDirecto: item.product.selectedIceCream,
+        iceCreamInfo: item.iceCreamInfo?.id,
+        iceCreamId: item.product.iceCreamId,
+        toppingIdFinal: toppingId,
+        iceCreamIdFinal: iceCreamId
+      });
+      
       return {
         producto: item.product.name,
         productoId: item.product._id || '',
         cantidad: item.quantity,
         precioUnitario: item.product.price,
         photo: item.product.photo,
-        topping: item.toppingInfo?.id || null,
-        helado: item.iceCreamInfo?.id || null
+        selectedTopping: toppingId,
+        selectedIceCream: iceCreamId
       };
     });
     
@@ -239,8 +276,11 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
       total: this.totalPagar
     };
     
+    // Log para verificar los datos que se enviarán
+    console.log('Datos del pedido a enviar:', pedidoData);
+    
     // Enviar pedido al servidor
-    this.pedidoService.crearPedido(pedidoData).subscribe({
+    this.pedidoService.createPedido(pedidoData).subscribe({
       next: (response) => {
         console.log('Pedido creado correctamente:', response);
         

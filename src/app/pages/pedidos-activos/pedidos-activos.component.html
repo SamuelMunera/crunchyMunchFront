@@ -1,0 +1,76 @@
+<div class="admin-pedidos-container">
+  <h1 class="title">Administración de Pedidos</h1>
+  
+  <div class="filtros-container">
+    <div class="filter-buttons">
+      <button class="filter-btn" [ngClass]="{'active': filtroActual === 'activos'}" (click)="aplicarFiltro('activos')" aria-label="Filtrar pedidos activos">
+        Pedidos Activos
+      </button>
+      <button class="filter-btn" [ngClass]="{'active': filtroActual === 'finalizados'}" (click)="aplicarFiltro('finalizados')" aria-label="Filtrar pedidos finalizados">
+        Pedidos Finalizados
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando pedidos...</p>
+  </div>
+  
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="cargarPedidos()" class="retry-button">Intentar nuevamente</button>
+  </div>
+  
+  <div *ngIf="!isLoading && !error && pedidos.length === 0" class="no-pedidos">
+    <p>No hay pedidos {{ filtroActual === 'activos' ? 'activos' : 'finalizados' }} disponibles.</p>
+  </div>
+  
+  <div *ngIf="pedidos.length > 0" class="pedidos-list">
+    <article class="Card" *ngFor="let pedido of pedidos; trackBy: trackByPedidoId">
+      <!-- Información del cliente -->
+      <div class="cliente-info">
+        <h2>Información del Cliente</h2>
+        <p class="nombre"><strong>Cliente:</strong> {{ pedido.informacionDelCliente?.nombre }} {{ pedido.informacionDelCliente?.apellido }}</p>
+        <p class="telefono"><strong>Teléfono:</strong> {{ pedido.informacionDelCliente?.telefono || 'No disponible' }}</p>
+        <div *ngIf="pedido.informacionDelCliente?.dedicatoria" class="dedicatoria">
+          <p><strong>Dedicatoria:</strong> {{ pedido.informacionDelCliente?.dedicatoria }}</p>
+        </div>
+      </div>
+      
+      <!-- Productos -->
+      <div class="container1">
+        <h2>Productos</h2>
+        <div *ngFor="let producto of pedido.resumenPedido?.productos">
+          <p class="order">{{ producto.nombre }} x{{ producto.cantidad }} - ${{ producto.precio }}</p>
+          
+          <!-- Usar los métodos para mostrar los nombres de toppings y helados -->
+          <p *ngIf="producto.selectedTopping">topping: {{ getToppingName(producto.selectedTopping) }}</p>
+          <p *ngIf="producto.selectedIceCream">helado: {{ getIceCreamName(producto.selectedIceCream) }}</p>
+        </div>
+        <p class="total"><strong>Total a pagar:</strong> ${{ pedido.resumenPedido?.totalPagar }}</p>
+      </div>
+      
+      <!-- Detalles del pedido -->
+      <div class="container2">
+        <h2 class="number">pedido {{ pedido._id ? pedido._id.slice(-4) : 'N/A' }}</h2>
+        <p class="date"><strong>Fecha:</strong> {{ pedido.fechaCreacion | date:'medium' }}</p>
+        <p class="type-order"><strong>Tipo de entrega:</strong> {{ pedido.informacionDeEntrega?.tipoPedido || 'N/A' }}</p>
+        <p class="address"><strong>Ubicación:</strong> {{ getDireccionCompleta(pedido) }}</p>
+        <p class="payment"><strong>Medio de pago:</strong> {{ pedido.informacionPago?.metodoPago || 'N/A' }}</p>
+        <p class="payment-status"><strong>Estado del pago:</strong> {{ pedido.informacionPago?.estadoPago || 'N/A' }}</p>
+        
+        <!-- Selector de estado -->
+        <div class="estado-container">
+          <label for="estado-{{ pedido._id }}"><strong>Estado del pedido:</strong></label>
+          <select 
+            id="estado-{{ pedido._id }}"
+            class="estado-select {{ getStatusClass(pedido.estado) }}"
+            [(ngModel)]="pedido.estado"
+            (change)="actualizarEstado(pedido)">
+            <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+          </select>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>

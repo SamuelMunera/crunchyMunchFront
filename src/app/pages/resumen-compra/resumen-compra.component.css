@@ -49,6 +49,11 @@
     min-width: 250px;
   }
   
+  label{
+    font-family: 'brownBeige', sans-serif;
+    font-weight: bold;
+    color: #000000;
+  }
   .campos label {
     display: block;
     margin-bottom: 12px;

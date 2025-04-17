@@ -1,58 +1,36 @@
-<article class="Card">
-    <div class="container1">
-      <p class="order">Peanut butter cookie x1</p>
-    </div>
-    <div class="container2">
-      <h1 class="number">pedido 2253</h1>
-      <p class="address">Entregado en: Calle135 #51 -59a</p>
-      <p class="payment">Medio de pago: efectivo</p>
-      <h1 class="status">estado de tu pedido: en camino</h1>
-    </div>
+<div class="pedidos-container">
+  <h1 class="title">Tus Pedidos</h1>
   
-    <div>
-      <img
-        src="
-      "
-        alt=""
-      />
-    </div>
-  </article>
-  <article class="Card">
-    <div class="container1">
-      <p class="order">Peanut butter cookie x1</p>
-    </div>
-    <div class="container2">
-      <h1 class="number">pedido 2253</h1>
-      <p class="address">Entregado en: Calle135 #51 -59a</p>
-      <p class="payment">Medio de pago: efectivo</p>
-      <h1 class="status">estado de tu pedido: en camino</h1>
-    </div>
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando tus pedidos...</p>
+  </div>
   
-    <div>
-      <img
-        src="
-      "
-        alt=""
-      />
-    </div>
-  </article>
-  <article class="Card">
-    <div class="container1">
-      <p class="order">Peanut butter cookie x1</p>
-    </div>
-    <div class="container2">
-      <h1 class="number">pedido 2253</h1>
-      <p class="address">Entregado en: Calle135 #51 -59a</p>
-      <p class="payment">Medio de pago: efectivo</p>
-      <h1 class="status">estado de tu pedido: en camino</h1>
-    </div>
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="cargarPedidos()" class="retry-button">Intentar nuevamente</button>
+  </div>
   
-    <div>
-      <img
-        src="
-      "
-        alt=""
-      />
-    </div>
-  </article>
- 
+  <div *ngIf="!isLoading && !error && pedidos.length === 0" class="no-pedidos">
+    <p>No tienes pedidos todavía.</p>
+  </div>
+  
+  <div *ngIf="pedidos.length > 0" class="pedidos-list">
+    <article class="Card" *ngFor="let pedido of pedidos; trackBy: trackByPedidoId">
+      <div class="container1">
+        <div *ngFor="let producto of pedido.resumenPedido?.productos">
+          <p class="order">{{ producto.nombre }} x{{ producto.cantidad }}</p>
+          <p *ngIf="producto.selectedTopping">topping: {{ producto.selectedTopping.name }}</p>
+          <p *ngIf="producto.selectedIceCream">helado: {{ producto.selectedIceCream.name }}</p>
+        </div>
+      </div>
+      
+      <div class="container2">
+        <h1 class="number">pedido {{ pedido._id ? pedido._id.slice(-4) : 'N/A' }}</h1>
+        <p class="type-order">tipo de entrega: {{ pedido.informacionDeEntrega?.tipoPedido || 'N/A' }}</p>
+        <p class="address">{{ pedido.informacionDeEntrega?.tipoPedido === 'domicilio' ? 'Entregado en:' : 'Recoger en tienda' }} {{ getDireccionCompleta(pedido) }}</p>
+        <p class="payment">Medio de pago: {{ pedido.informacionPago?.metodoPago || 'N/A' }}</p>
+        <h1 class="status">estado de tu pedido: {{ pedido.estado || 'N/A' }}</h1>
+      </div>
+    </article>
+  </div>
+</div>
