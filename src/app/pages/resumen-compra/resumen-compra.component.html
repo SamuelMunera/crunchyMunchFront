@@ -31,6 +31,72 @@
           <label>¿Te gustaría ponerle alguna dedicatoria?
             <input type="text" [(ngModel)]="clienteInfo.dedicatoria" placeholder="Escribe tu mensaje especial aquí" />
           </label>
+          
+          <!-- Nueva sección para fecha de entrega -->
+          <div class="fecha-entrega-section">
+            <p class="pregunta">¿Te gustaría recibir el pedido en otra fecha?</p>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="fechaEntrega" [value]="false" 
+                      [checked]="!entregaInfo.fechaPersonalizada"
+                      (change)="cambiarFechaPersonalizada(false)" /> Lo antes posible (30-45 min)
+              </label>
+              <label>
+                <input type="radio" name="fechaEntrega" [value]="true" 
+                      [checked]="entregaInfo.fechaPersonalizada"
+                      (change)="cambiarFechaPersonalizada(true)" /> Seleccionar fecha y hora
+              </label>
+            </div>
+            
+            <!-- Calendario personalizado -->
+            <div *ngIf="mostrarCalendario" class="calendario-container">
+              <div class="calendario-header">
+                <button type="button" class="nav-btn" (click)="mesAnterior()">←</button>
+                <h3>{{ meses[calendarioMes] }} {{ calendarioAno }}</h3>
+                <button type="button" class="nav-btn" (click)="mesSiguiente()">→</button>
+              </div>
+              
+              <div class="calendario-grid">
+                <div class="dia-semana" *ngFor="let dia of diasSemana">{{ dia }}</div>
+                <div 
+                  *ngFor="let dia of diasDelMes" 
+                  class="dia-mes"
+                  [class.dia-habilitado]="dia?.habilitado"
+                  [class.dia-deshabilitado]="dia && !dia.habilitado"
+                  [class.dia-seleccionado]="dia?.seleccionado"
+                  [class.dia-vacio]="!dia"
+                  (click)="seleccionarFecha(dia)">
+                  {{ dia?.numero || '' }}
+                </div>
+              </div>
+              
+              <!-- Selector de hora -->
+              <div *ngIf="fechaSeleccionada" class="hora-container">
+                <label>Hora de entrega:
+                  <select [(ngModel)]="entregaInfo.horaEntrega" class="hora-select">
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                  </select>
+                </label>
+              </div>
+              
+              <div *ngIf="fechaSeleccionada" class="fecha-seleccionada-info">
+                <p><strong>Fecha seleccionada:</strong> {{ fechaSeleccionada | date:'fullDate':'es' }}</p>
+                <p><strong>Hora:</strong> {{ entregaInfo.horaEntrega }}</p>
+              </div>
+            </div>
+          </div>
+
           <p class="pregunta">¿Te gustaría recibir a domicilio tus productos o recogerlos en punto?</p>
           <div class="radio-group">
             <label>

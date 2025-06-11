@@ -864,3 +864,422 @@ input:required + label::after {
     font-size: 16px;
   }
 }
+/* Estilos para la sección de fecha de entrega */
+.fecha-entrega-section {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 4px solid #ff88c2;
+  transition: all 0.3s ease;
+}
+
+.fecha-entrega-section:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 136, 194, 0.2);
+}
+
+/* Estilos para el contenedor del calendario */
+.calendario-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 6px 20px rgba(255, 136, 194, 0.3);
+  border: 2px solid rgba(255, 136, 194, 0.4);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header del calendario */
+.calendario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.calendario-header h3 {
+  font-family: 'brownBeige', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Botones de navegación del calendario */
+.nav-btn {
+  background-color: #ff88c2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(255, 136, 194, 0.4);
+}
+
+.nav-btn:hover {
+  background-color: #ff6eb0;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 136, 194, 0.6);
+}
+
+.nav-btn:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow: 0 2px 5px rgba(255, 136, 194, 0.3);
+}
+
+/* Grid del calendario */
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* Días de la semana */
+.dia-semana {
+  background-color: #ff88c2;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 4px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(255, 136, 194, 0.3);
+}
+
+/* Días del mes */
+.dia-mes {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  min-height: 45px;
+}
+
+/* Día vacío (espacios en blanco) */
+.dia-vacio {
+  background-color: transparent;
+  cursor: default;
+}
+
+/* Día habilitado */
+.dia-habilitado {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 136, 194, 0.3);
+  color: #333;
+}
+
+.dia-habilitado:hover {
+  background-color: rgba(255, 136, 194, 0.2);
+  border-color: #ff88c2;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 136, 194, 0.4);
+}
+
+/* Día deshabilitado */
+.dia-deshabilitado {
+  background-color: rgba(200, 200, 200, 0.5);
+  color: #999;
+  cursor: not-allowed;
+  border: 2px solid rgba(200, 200, 200, 0.3);
+}
+
+/* Día seleccionado */
+.dia-seleccionado {
+  background-color: #ff88c2 !important;
+  color: white !important;
+  border-color: #ff6eb0 !important;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 136, 194, 0.6);
+  animation: seleccionPulse 0.3s ease;
+}
+
+@keyframes seleccionPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1.1); }
+}
+
+.dia-seleccionado::after {
+  content: '✓';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #25a244;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de hora */
+.hora-container {
+  background-color: rgba(255, 136, 194, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  border: 2px dashed #ff88c2;
+}
+
+.hora-container label {
+  font-family: 'brownBeige', sans-serif;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Select de hora */
+.hora-select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid rgba(255, 136, 194, 0.3);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff88c2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 45px;
+}
+
+.hora-select:focus {
+  outline: none;
+  border-color: #ff88c2;
+  box-shadow: 0 0 0 3px rgba(255, 136, 194, 0.2);
+  background-color: rgba(255, 136, 194, 0.05);
+}
+
+.hora-select:hover {
+  border-color: #ff6eb0;
+  box-shadow: 0 2px 8px rgba(255, 136, 194, 0.2);
+}
+
+/* Información de fecha seleccionada */
+.fecha-seleccionada-info {
+  background-color: rgba(37, 162, 68, 0.1);
+  border: 2px solid rgba(37, 162, 68, 0.3);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fecha-seleccionada-info p {
+  margin: 8px 0;
+  font-family: 'brownBeige', sans-serif;
+  color: #2d6a4f;
+  font-size: 15px;
+}
+
+.fecha-seleccionada-info strong {
+  color: #155724;
+  font-weight: bold;
+}
+
+/* Estilos responsivos para el calendario */
+@media (max-width: 768px) {
+  .calendario-container {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .calendario-header h3 {
+    font-size: 18px;
+  }
+  
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+  
+  .calendario-grid {
+    gap: 6px;
+  }
+  
+  .dia-mes {
+    min-height: 40px;
+    font-size: 14px;
+  }
+  
+  .dia-semana {
+    padding: 10px 2px;
+    font-size: 12px;
+  }
+  
+  .hora-select {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .fecha-seleccionada-info {
+    padding: 12px;
+  }
+  
+  .fecha-seleccionada-info p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendario-container {
+    padding: 12px;
+  }
+  
+  .calendario-header {
+    margin-bottom: 15px;
+  }
+  
+  .calendario-header h3 {
+    font-size: 16px;
+  }
+  
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  .calendario-grid {
+    gap: 4px;
+  }
+  
+  .dia-mes {
+    min-height: 35px;
+    font-size: 13px;
+  }
+  
+  .dia-semana {
+    padding: 8px 1px;
+    font-size: 11px;
+  }
+  
+  .dia-seleccionado::after {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    top: -3px;
+    right: -3px;
+  }
+  
+  .fecha-entrega-section {
+    padding: 15px;
+  }
+  
+  .hora-container {
+    padding: 12px;
+  }
+  
+  .fecha-seleccionada-info {
+    padding: 10px;
+  }
+  
+  .fecha-seleccionada-info p {
+    font-size: 13px;
+  }
+}
+
+/* Efectos adicionales para mejorar la experiencia */
+.dia-habilitado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  opacity: 0;
+  background: linear-gradient(45deg, rgba(255, 136, 194, 0.1), rgba(255, 136, 194, 0.3));
+  transition: opacity 0.3s ease;
+}
+
+.dia-habilitado:hover::before {
+  opacity: 1;
+}
+
+/* Animación para cuando aparece el calendario */
+.calendario-container * {
+  animation-delay: 0.1s;
+}
+
+.calendario-grid .dia-mes:nth-child(n) {
+  animation: fadeInScale 0.3s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Stagger animation para los días */
+.calendario-grid .dia-mes:nth-child(1) { animation-delay: 0.05s; }
+.calendario-grid .dia-mes:nth-child(2) { animation-delay: 0.1s; }
+.calendario-grid .dia-mes:nth-child(3) { animation-delay: 0.15s; }
+.calendario-grid .dia-mes:nth-child(4) { animation-delay: 0.2s; }
+.calendario-grid .dia-mes:nth-child(5) { animation-delay: 0.25s; }
+.calendario-grid .dia-mes:nth-child(6) { animation-delay: 0.3s; }
+.calendario-grid .dia-mes:nth-child(7) { animation-delay: 0.35s; }
+/* Continuar el patrón para más días si es necesario */

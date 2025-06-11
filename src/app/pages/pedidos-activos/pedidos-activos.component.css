@@ -350,4 +350,37 @@ h2 {
 pre {
   white-space: pre-wrap;
   margin: 0;
+}.fecha-personalizada-info {
+  background-color: rgba(135, 206, 235, 0.1);
+  border-left: 4px solid rgba(135, 206, 235, 0.8);
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.fecha-entrega, .hora-entrega {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.referencias {
+  background-color: rgba(251, 191, 36, 0.1);
+  border-left: 4px solid rgba(251, 191, 36, 0.8);
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-style: italic;
+}
+
+/* Estilos responsivos para las nuevas secciones */
+@media (max-width: 768px) {
+  .fecha-personalizada-info {
+    padding: 10px;
+    margin: 8px 0;
+  }
+  
+  .fecha-entrega, .hora-entrega {
+    font-size: 0.9rem;
+  }
 }

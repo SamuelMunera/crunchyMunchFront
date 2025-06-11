@@ -60,10 +60,5 @@ export const routes: Routes = [
 
     canActivate: [AdminAuthGuard],
   },
-  {
-    path: 'admin/',
-    component: PedidosActivosComponent,
-
-    canActivate: [AdminAuthGuard],
-  },
+ 
 ];

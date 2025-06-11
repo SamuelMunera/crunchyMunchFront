@@ -34,7 +34,10 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     direccion: '',
     barrio: '',
     ciudad: '',
-    referencias: ''
+    referencias: '',
+    fechaPersonalizada: false, // Nueva propiedad para fecha personalizada
+    fechaEntrega: '', // Nueva propiedad para almacenar la fecha seleccionada
+    horaEntrega: '12:00' // Nueva propiedad para la hora de entrega
   };
 
   // Variables para el carrito
@@ -52,6 +55,20 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
   mostrarMensaje: boolean = false;
   pedidoCreado: boolean = false;
   pedidoId: string = '';
+
+  // Variables para el calendario personalizado
+  mostrarCalendario: boolean = false;
+  fechaMinima: string = '';
+  fechaMaxima: string = '';
+  diasSemana: string[] = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  meses: string[] = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
+  calendarioMes: number = new Date().getMonth();
+  calendarioAno: number = new Date().getFullYear();
+  diasDelMes: any[] = [];
+  fechaSeleccionada: Date | null = null;
 
   // Suscripción para detectar cambios en el carrito
   private cartSubscription: Subscription | null = null;
@@ -90,6 +107,10 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
       this.clienteInfo.apellido = this.currentUser.lastName || '';
       this.clienteInfo.telefono = this.currentUser.phone?.toString() || '';
     }
+
+    // Configurar fechas mínimas y máximas para el calendario
+    this.configurarFechas();
+    this.generarCalendario();
   }
 
   ngOnDestroy(): void {
@@ -97,6 +118,114 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
+  }
+
+  /**
+   * Configura las fechas mínimas y máximas para el selector de fecha
+   */
+  configurarFechas(): void {
+    const hoy = new Date();
+    const manana = new Date(hoy);
+    manana.setDate(hoy.getDate() + 1);
+    
+    const maxFecha = new Date(hoy);
+    maxFecha.setDate(hoy.getDate() + 30); // Máximo 30 días adelante
+    
+    this.fechaMinima = manana.toISOString().split('T')[0];
+    this.fechaMaxima = maxFecha.toISOString().split('T')[0];
+  }
+
+  /**
+   * Cambia el estado de fecha personalizada
+   */
+  cambiarFechaPersonalizada(personalizada: boolean): void {
+    this.entregaInfo.fechaPersonalizada = personalizada;
+    this.mostrarCalendario = personalizada;
+    
+    if (!personalizada) {
+      this.entregaInfo.fechaEntrega = '';
+      this.fechaSeleccionada = null;
+    } else {
+      this.generarCalendario();
+    }
+  }
+
+  /**
+   * Genera el calendario para el mes actual
+   */
+  generarCalendario(): void {
+    const primerDia = new Date(this.calendarioAno, this.calendarioMes, 1);
+    const ultimoDia = new Date(this.calendarioAno, this.calendarioMes + 1, 0);
+    const diasEnMes = ultimoDia.getDate();
+    const diaSemanaInicio = primerDia.getDay();
+    
+    this.diasDelMes = [];
+    
+    // Agregar días vacíos al inicio
+    for (let i = 0; i < diaSemanaInicio; i++) {
+      this.diasDelMes.push(null);
+    }
+    
+    // Agregar los días del mes
+    const hoy = new Date();
+    const fechaMinima = new Date(hoy);
+    fechaMinima.setDate(hoy.getDate() + 1);
+    
+    const fechaMaxima = new Date(hoy);
+    fechaMaxima.setDate(hoy.getDate() + 30);
+    
+    for (let dia = 1; dia <= diasEnMes; dia++) {
+      const fecha = new Date(this.calendarioAno, this.calendarioMes, dia);
+      const esHabilitado = fecha >= fechaMinima && fecha <= fechaMaxima;
+      const esSeleccionado = this.fechaSeleccionada && 
+        this.fechaSeleccionada.getDate() === dia &&
+        this.fechaSeleccionada.getMonth() === this.calendarioMes &&
+        this.fechaSeleccionada.getFullYear() === this.calendarioAno;
+      
+      this.diasDelMes.push({
+        numero: dia,
+        fecha: fecha,
+        habilitado: esHabilitado,
+        seleccionado: esSeleccionado
+      });
+    }
+  }
+
+  /**
+   * Navega al mes anterior
+   */
+  mesAnterior(): void {
+    if (this.calendarioMes === 0) {
+      this.calendarioMes = 11;
+      this.calendarioAno--;
+    } else {
+      this.calendarioMes--;
+    }
+    this.generarCalendario();
+  }
+
+  /**
+   * Navega al mes siguiente
+   */
+  mesSiguiente(): void {
+    if (this.calendarioMes === 11) {
+      this.calendarioMes = 0;
+      this.calendarioAno++;
+    } else {
+      this.calendarioMes++;
+    }
+    this.generarCalendario();
+  }
+
+  /**
+   * Selecciona una fecha del calendario
+   */
+  seleccionarFecha(dia: any): void {
+    if (!dia || !dia.habilitado) return;
+    
+    this.fechaSeleccionada = dia.fecha;
+    this.entregaInfo.fechaEntrega = dia.fecha.toISOString().split('T')[0];
+    this.generarCalendario(); // Regenerar para actualizar el estado visual
   }
 
   /**
@@ -207,6 +336,12 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
         return;
       }
     }
+
+    // Validar fecha personalizada si está seleccionada
+    if (this.entregaInfo.fechaPersonalizada && !this.entregaInfo.fechaEntrega) {
+      alert('Por favor, selecciona una fecha de entrega');
+      return;
+    }
     
     // Validar aceptación de términos
     if (!this.aceptoTerminos) {
@@ -268,7 +403,12 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     
     const pedidoData = {
       cliente: this.clienteInfo,
-      entrega: this.entregaInfo,
+      entrega: {
+        ...this.entregaInfo,
+        // Formatear la fecha y hora si está personalizada
+        fechaEntrega: this.entregaInfo.fechaPersonalizada && this.entregaInfo.fechaEntrega ? 
+          `${this.entregaInfo.fechaEntrega}T${this.entregaInfo.horaEntrega}:00` : null
+      },
       productos: productos,
       metodoPago: this.metodoPago,
       subtotal: subtotal,
