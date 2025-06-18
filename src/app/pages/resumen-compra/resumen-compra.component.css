@@ -38,11 +38,22 @@
   }
   
   .pedido-info {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  display: block;
+  gap: 20px;
+}
+
+.campos {
+  width: 100%;
+}
+
+.mapa {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+}
   
   .campos {
     flex: 1;
@@ -118,14 +129,14 @@
     100% { transform: scale(1); }
   }
   
-  .mapa {
-    flex: 1;
-    min-width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+.mapa {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+}
   
   .mapa iframe {
     max-width: 100%;
@@ -1283,3 +1294,7 @@ input:required + label::after {
 .calendario-grid .dia-mes:nth-child(6) { animation-delay: 0.3s; }
 .calendario-grid .dia-mes:nth-child(7) { animation-delay: 0.35s; }
 /* Continuar el patrón para más días si es necesario */
+.mapa.recoger-info {
+  display: flex !important;
+  animation: fadeIn 0.5s ease;
+}

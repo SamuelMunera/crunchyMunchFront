@@ -110,7 +110,16 @@
                     (change)="cambiarTipoEntrega('recoger')" /> Recoger
             </label>
           </div>
-          
+           <!-- Contenedor para información de recoger -->
+        <div *ngIf="entregaInfo.tipoPedido === 'recoger'" class="mapa recoger-info">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0424421720104!2d-75.3871780241843!3d6.124990927664341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e469f3c1b6e9913%3A0xe6d83b4c53491344!2sCrunchy%20Munch!5e0!3m2!1ses!2sco!4v1744325698219!5m2!1ses!2sco" 
+            width="400" height="300" style="border:0;" 
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <p class="tiempo">¡Tus productos estarán listas de 15 a 20 minutos!</p>
+        </div>
+      </div>
           <!-- Contenedor para información de domicilio -->
           <div *ngIf="entregaInfo.tipoPedido === 'domicilio'" class="direccion-container">
             <h3>Información de envío:</h3>
@@ -142,16 +151,7 @@
           </div>
         </div>
         
-        <!-- Contenedor para información de recoger -->
-        <div *ngIf="entregaInfo.tipoPedido === 'recoger'" class="mapa recoger-info">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0424421720104!2d-75.3871780241843!3d6.124990927664341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e469f3c1b6e9913%3A0xe6d83b4c53491344!2sCrunchy%20Munch!5e0!3m2!1ses!2sco!4v1744325698219!5m2!1ses!2sco" 
-            width="400" height="300" style="border:0;" 
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <p class="tiempo">¡Tus productos estarán listas de 15 a 20 minutos!</p>
-        </div>
-      </div>
+       
     </section>
     
     <section class="seccion resumen">

@@ -129,7 +129,7 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     manana.setDate(hoy.getDate() + 1);
     
     const maxFecha = new Date(hoy);
-    maxFecha.setDate(hoy.getDate() + 30); // Máximo 30 días adelante
+    maxFecha.setDate(hoy.getDate() + 60); // Máximo 60 días adelante
     
     this.fechaMinima = manana.toISOString().split('T')[0];
     this.fechaMaxima = maxFecha.toISOString().split('T')[0];
@@ -172,7 +172,7 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
     fechaMinima.setDate(hoy.getDate() + 1);
     
     const fechaMaxima = new Date(hoy);
-    fechaMaxima.setDate(hoy.getDate() + 30);
+    fechaMaxima.setDate(hoy.getDate() + 60);
     
     for (let dia = 1; dia <= diasEnMes; dia++) {
       const fecha = new Date(this.calendarioAno, this.calendarioMes, dia);
