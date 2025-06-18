@@ -245,7 +245,7 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
       return photo;
     }
     // Si es una ruta relativa, construir la URL completa
-    return `http://localhost:3000${photo}`;
+    return `https://us-central1-crunchy-5694e.cloudfunctions.net/api${photo}`;
   }
 
   /**

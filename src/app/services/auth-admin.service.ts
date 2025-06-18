@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthServices {
-  private apiUrl = 'http://localhost:3000/api/superUserAuth';
+  private apiUrl = 'https://us-central1-crunchy-5694e.cloudfunctions.net/api/superUserAuth';
   
   constructor(private http: HttpClient) { }
   

@@ -47,7 +47,7 @@ export class ModalComponent implements OnInit {
 
   get photoUrl(): string {
     if (!this.product || !this.product.photo) return '';
-    return this.product.photo.startsWith('http') ? this.product.photo : `http://localhost:3000${this.product.photo}`;
+    return this.product.photo.startsWith('http') ? this.product.photo : `https://us-central1-crunchy-5694e.cloudfunctions.net/api${this.product.photo}`;
   }
   
   handleAddToCart(product: any, quantity: number) {
@@ -92,7 +92,7 @@ export class ModalComponent implements OnInit {
     this.isLoading = true;
     
     // Cargar toppings
-    this.http.get<Topping[]>(`http://localhost:3000/api/product/${this.product.name}/toppings`).subscribe({
+    this.http.get<Topping[]>(`https://us-central1-crunchy-5694e.cloudfunctions.net/api/${this.product.name}/toppings`).subscribe({
       next: (toppings) => {
         this.availableToppings = toppings || [];
         console.log('Toppings disponibles:', this.availableToppings);
@@ -105,7 +105,7 @@ export class ModalComponent implements OnInit {
     });
     
     // Cargar helados
-    this.http.get<IceCream[]>(`http://localhost:3000/api/product/${this.product.name}/iceCream`).subscribe({
+    this.http.get<IceCream[]>(`https://us-central1-crunchy-5694e.cloudfunctions.net/api/product/${this.product.name}/iceCream`).subscribe({
       next: (iceCreams) => {
         this.availableIceCreams = iceCreams || [];
         console.log('Helados disponibles:', this.availableIceCreams);

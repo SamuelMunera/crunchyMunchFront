@@ -28,7 +28,7 @@ interface CartItem {
 export class CartComponent implements OnInit, OnDestroy {
   public cartItems: CartItem[] = [];
   private cartSubscription?: Subscription;
-  private apiUrl: string = 'http://localhost:3000'; // Ajústalo a la URL de tu backend
+  private apiUrl: string = 'https://us-central1-crunchy-5694e.cloudfunctions.net/api'; // Ajústalo a la URL de tu backend
   
   constructor(
     public cartService: CartService,

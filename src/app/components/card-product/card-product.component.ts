@@ -24,7 +24,7 @@ export class CardProductComponent {
   get photoUrl(): string {
     return this.photo.startsWith('http')
       ? this.photo
-      : `http://localhost:3000${this.photo}`;
+      : `https://us-central1-crunchy-5694e.cloudfunctions.net/api${this.photo}`;
   }
 
   isModalOpen = false;

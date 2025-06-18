@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ImageService {
-  private apiUrl = 'http://localhost:3000/uploads'; // URL del backend
+  private apiUrl = 'https://us-central1-crunchy-5694e.cloudfunctions.net/api/uploads'; // URL del backend
   
   getImageUrl(relativePath: string): string {
     if (!relativePath) return 'assets/default-image.png'; // imagen por defecto
