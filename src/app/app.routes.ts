@@ -60,5 +60,10 @@ export const routes: Routes = [
 
     canActivate: [AdminAuthGuard],
   },
+  {
+    path: 'admin/Crear productos',
+    component: CrearProductosComponent,
+    canActivate: [AdminAuthGuard], // Protege esta ruta con el guard
+  },
  
 ];
