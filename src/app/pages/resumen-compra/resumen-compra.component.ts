@@ -239,14 +239,21 @@ export class ResumenCompraComponent implements OnInit, OnDestroy {
   /**
    * Obtiene la URL de la imagen del producto
    */
-  getImageUrl(photo: string): string {
-    // Si la imagen ya es una URL completa, devolverla
-    if (photo && (photo.startsWith('http') || photo.startsWith('data:'))) {
-      return photo;
-    }
-    // Si es una ruta relativa, construir la URL completa
-    return `https://us-central1-crunchy-5694e.cloudfunctions.net/api${photo}`;
+getImageUrl(photo: string): string {
+  // Si la imagen ya es una URL completa, devolverla
+  if (photo && (photo.startsWith('http') || photo.startsWith('data:'))) {
+    return photo;
   }
+  
+  // Si no hay foto, devolver imagen por defecto
+  if (!photo) {
+    return 'assets/default-image.png';
+  }
+  
+  // Si es una ruta relativa, construir la URL completa con el bucket de S3
+  const path = photo.startsWith('/') ? photo.substring(1) : photo;
+  return `https://crunchy-app-2025.s3.us-east-2.amazonaws.com/${path}`;
+}
 
   /**
    * Obtiene el nombre del topping si existe

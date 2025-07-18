@@ -25,7 +25,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://us-central1-crunchy-5694e.cloudfunctions.net/api/auth';
+  private apiUrl = 'http://3.14.254.112:3000/api/auth';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser = this.currentUserSubject.asObservable();
   private tokenSubject = new BehaviorSubject<string | null>(null);
