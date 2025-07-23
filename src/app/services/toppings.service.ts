@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ToppingsService {
   private http: HttpClient = inject(HttpClient);
-  private readonly ApiUrl = 'http://api.crunchy-munch.com:3000/api/topping';
+  private readonly ApiUrl = 'https://api.crunchy-munch.com/api/topping';
   
   constructor() { }
 

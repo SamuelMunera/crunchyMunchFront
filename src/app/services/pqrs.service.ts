@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class PqrsService {
   
   private http: HttpClient = inject(HttpClient); // Inyección correcta
-  private readonly ApiUrl = 'http://api.crunchy-munch.com:3000/api/pqrs';
+  private readonly ApiUrl = 'https://api.crunchy-munch.com/api/pqrs';
 
   constructor() {}
 

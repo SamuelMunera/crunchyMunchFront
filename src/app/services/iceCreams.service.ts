@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class IceCreamService {
   private http: HttpClient = inject(HttpClient);
-  private readonly ApiUrl = 'http://api.crunchy-munch.com:3000/api/iceCream';
+  private readonly ApiUrl = 'https://api.crunchy-munch.com/api/iceCream';
   
   constructor() { }
 

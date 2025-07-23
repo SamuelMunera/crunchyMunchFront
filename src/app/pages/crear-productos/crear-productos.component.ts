@@ -63,7 +63,7 @@ export class CrearProductosComponent implements OnInit {
   }
 
   loadCategories(): void {
-    this.http.get<Category[]>('http://api.crunchy-munch.com:3000/api/category/getAll').subscribe(
+    this.http.get<Category[]>('https://api.crunchy-munch.com/api/category/getAll').subscribe(
       (data) => {
         this.categories = data;
       },
@@ -74,7 +74,7 @@ export class CrearProductosComponent implements OnInit {
   }
 
   loadToppings(): void {
-    this.http.get<Topping[]>('http://api.crunchy-munch.com:3000/api/topping/getAll').subscribe(
+    this.http.get<Topping[]>('https://api.crunchy-munch.com/api/topping/getAll').subscribe(
       (data) => {
         this.toppings = data;
       },
@@ -85,7 +85,7 @@ export class CrearProductosComponent implements OnInit {
   }
 
   loadIceCreams(): void {
-    this.http.get<IceCream[]>('http://api.crunchy-munch.com:3000/api/iceCream/getAll').subscribe(
+    this.http.get<IceCream[]>('https://api.crunchy-munch.com/api/iceCream/getAll').subscribe(
       (data) => {
         this.iceCreams = data;
       },
@@ -155,7 +155,7 @@ export class CrearProductosComponent implements OnInit {
       formData.append('photo', this.selectedFile);
       
       // Crear el producto
-      this.http.post('http://api.crunchy-munch.com:3000/api/product/create', formData).subscribe(
+      this.http.post('https://api.crunchy-munch.com/api/product/create', formData).subscribe(
         (response: any) => {
           // Si el producto se creó exitosamente, asignamos los toppings
           const toppingsArray = this.productoForm.get('toppings') as FormArray;
@@ -205,7 +205,7 @@ export class CrearProductosComponent implements OnInit {
   }
 
   assignToppings(productId: string, toppingIds: string[]): void {
-    this.http.patch(`http://api.crunchy-munch.com:3000/api/product/${productId}/toppings`, {
+    this.http.patch(`https://api.crunchy-munch.com/api/product/${productId}/toppings`, {
       toppings: toppingIds
     }).subscribe(
       () => console.log('Toppings asignados correctamente'),
@@ -214,7 +214,7 @@ export class CrearProductosComponent implements OnInit {
   }
 
   assignIceCreams(productId: string, iceCreamIds: string[]): void {
-    this.http.patch(`http://api.crunchy-munch.com:3000/api/product/${productId}/iceCream`, {
+    this.http.patch(`https://api.crunchy-munch.com/api/product/${productId}/iceCream`, {
       iceCream: iceCreamIds
     }).subscribe(
       () => console.log('Helados asignados correctamente'),
