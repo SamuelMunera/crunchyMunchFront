@@ -9,7 +9,7 @@ import { CategoryService } from '../../services/category.service';
 import { Products } from '../../models/Product.model';
 
 @Component({
-  selector: 'app-bebidas-producto',
+  selector: 'app-milshakes-producto',
   standalone: true,
   imports: [RouterLinkWithHref, HttpClientModule, CardProductComponent],
   templateUrl: './milshakes-producto.component.html',

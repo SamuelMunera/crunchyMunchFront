@@ -25,7 +25,7 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://3.14.254.112:3000/api/auth';
+  private apiUrl = 'http://api.crunchy-munch.com/api/auth';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser = this.currentUserSubject.asObservable();
   private tokenSubject = new BehaviorSubject<string | null>(null);

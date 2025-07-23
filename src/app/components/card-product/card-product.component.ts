@@ -4,6 +4,17 @@ import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 
+// ✅ Definir interfaces para los tipos de datos
+interface Topping {
+  _id: string;
+  name: string;
+}
+
+interface IceCream {
+  _id: string;
+  name: string;
+}
+
 @Component({
   selector: 'card-product',
   standalone: true,
@@ -19,7 +30,11 @@ export class CardProductComponent {
   @Input() photo = '';
   @Input() description = '';
   @Input() recommendation = '';
-  @Input() price = '';
+  @Input() price: number = 0;
+  
+  // ✅ CAMBIO CRÍTICO: Cambiar de string a array de objetos
+  @Input() iceCream: IceCream[] = [];
+  @Input() toppings: Topping[] = [];
 
   get photoUrl(): string {
     return this.photo.startsWith('http')
@@ -31,14 +46,29 @@ export class CardProductComponent {
   selectedProduct: any = null;
 
   openModal() {
+    // ✅ Debug para verificar qué datos estamos recibiendo
+    console.group('🔍 DEBUG - DATOS DEL PRODUCTO EN CARD');
+    console.log('ID:', this._id);
+    console.log('Name:', this.name);
+    console.log('Toppings recibidos:', this.toppings);
+    console.log('Ice Creams recibidos:', this.iceCream);
+    console.log('Toppings es array?', Array.isArray(this.toppings));
+    console.log('Ice Creams es array?', Array.isArray(this.iceCream));
+    console.groupEnd();
+
     this.selectedProduct = {
-      _id: this._id, // Assuming you want to use name as the ID, change if needed
+      _id: this._id,
       name: this.name,
       photo: this.photo,
       description: this.description,
       recommendation: this.recommendation,
       price: this.price,
+      // ✅ CAMBIO CRÍTICO: Pasar los arrays completos, no strings
+      iceCream: this.iceCream,
+      toppings: this.toppings,
     };
+    
+    console.log('🚀 Producto enviado al modal:', this.selectedProduct);
     this.isModalOpen = true;
   }
 

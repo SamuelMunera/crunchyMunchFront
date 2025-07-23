@@ -4,13 +4,15 @@
    <div>
     @for (product of getProductsByCategory('6853184fda08e9f58f477755'); track product._id) {
         <card-product 
-          [id]="product._id"
+          [_id]="product._id"
           [name]="product.name"
           [photo]="product.photo"
           [description]="product.description"
           [recommendation]="product.recommendation"
-          [price]="product.price">
-        </card-product> 
+          [price]="product.price"
+          [toppings]="product.toppings"     
+          [iceCream]="product.iceCream">
+        </card-product>  
     }
     </div>
 

@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-crear-toppings',
+  selector: 'app-crear-iceCream',
   standalone: true,
   imports: [RouterLinkWithHref, ReactiveFormsModule, CommonModule],
   templateUrl: './crear-iceCream.component.html',

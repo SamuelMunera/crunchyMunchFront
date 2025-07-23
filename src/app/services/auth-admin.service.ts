@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthServices {
-  private apiUrl = 'http://3.14.254.112:3000/api/superUserAuth';
+  private apiUrl = 'http://api.crunchy-munch.com/api/superUserAuth';
   
   constructor(private http: HttpClient) { }
   

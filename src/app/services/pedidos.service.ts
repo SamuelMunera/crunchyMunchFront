@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PedidoService {
   private http: HttpClient = inject(HttpClient);
-  private readonly ApiUrl = 'http://3.14.254.112:3000/api/pedidos';
+  private readonly ApiUrl = 'http://api.crunchy-munch.com/api/pedidos';
 
   constructor() { }
 
