@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsService {
   private http = inject(HttpClient);
-  private readonly ApiUrl = 'http://api.crunchy-munch.com/api/product';
+  private readonly ApiUrl = 'https://api.crunchy-munch.com/api/product';
   
   constructor() {}
 
