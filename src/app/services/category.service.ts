@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategoryService {
 private http = inject(HttpClient);
-  private readonly ApiUrl = 'http://api.crunchy-munch.com/api/category';
+  private readonly ApiUrl = 'http://api.crunchy-munch.com:3000/api/category';
   
  constructor() {}
 
